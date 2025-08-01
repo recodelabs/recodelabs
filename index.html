@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recode Labs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libertinus+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #4a3728;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            width: 480px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 4px 8px rgba(74, 55, 40, 0.1));
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4a3728;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .subtitle {
+            font-family: 'Libertinus Serif', serif;
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .coming-soon {
+            font-size: 1rem;
+            color: #8b7355;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+        
+        .quote {
+            font-size: 2rem;
+            color: #ffffff;
+            font-style: italic;
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+        
+        .quote-author {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #ffffff;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                width: 250px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                width: 200px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="image/recode.png" alt="Recode Labs - Octopus Logo" class="logo" id="logo">
+        <div class="subtitle">
+            "What we make stands testament to who we are"
+          <div class="quote-author">— Jony Ive</div>
+        </div>
+    </div>
+    <script>
+        VANTA.TOPOLOGY({
+            el: "body",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xf0eeec,
+            backgroundColor: 0x36b6be
+        })
+    </script>
+</body>
+</html>
