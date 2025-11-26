@@ -1,0 +1,175 @@
+<!-- ABOUTME: Rotating squares animation effect for Recode Labs -->
+<!-- ABOUTME: Canvas-based animation with pseudo-random rotating rectangles -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Recode Labs - Rotating Squares</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                background: #ddd;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+            }
+
+            .container {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .logo {
+                width: 40vw;
+                height: auto;
+                filter: brightness(0) saturate(100%) invert(44%) sepia(93%)
+                    saturate(1479%) hue-rotate(338deg) brightness(92%)
+                    contrast(89%);
+            }
+
+            .remix-btn {
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                padding: 10px;
+                opacity: 0.7;
+                transition:
+                    opacity 0.3s,
+                    transform 0.3s;
+            }
+
+            .remix-btn:hover {
+                opacity: 1;
+                transform: rotate(180deg);
+            }
+
+            .remix-btn svg {
+                width: 32px;
+                height: 32px;
+                fill: #e05939;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas></canvas>
+        <div class="container">
+            <img src="../image/recodelabs.svg" alt="Recode Labs" class="logo" />
+            <button
+                class="remix-btn"
+                onclick="window.parent.postMessage('remix', '*')"
+                title="Remix"
+            >
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
+                    />
+                </svg>
+            </button>
+        </div>
+        <script>
+            const canvas = document.querySelector("canvas");
+            const cx = canvas.getContext("2d");
+
+            const INCREMENT = 12345;
+            const MULTIPLIER = 1103515245;
+            const MODULUS = Math.pow(2, 31);
+
+            const stepX = 16;
+            const stepY = 16;
+            const sizeX = 1;
+            const sizeY = 1;
+            const marginTop = 32;
+            const marginBottom = 32;
+            const marginLeft = 32;
+            const marginRight = 32;
+
+            let frameID;
+
+            function lcg(x, c = INCREMENT, a = MULTIPLIER, m = MODULUS) {
+                return (a * x + c) % m;
+            }
+
+            function createRandom(initialSeed = 0) {
+                let seed = initialSeed;
+                return {
+                    get currentSeed() {
+                        return seed;
+                    },
+                    reset(newSeed) {
+                        seed = newSeed;
+                    },
+                    get() {
+                        seed = lcg(seed);
+                        return seed / MODULUS;
+                    },
+                };
+            }
+
+            const random = createRandom();
+
+            function frame(frameTime) {
+                cx.clearRect(0, 0, cx.canvas.width, cx.canvas.height);
+                for (
+                    let y = marginTop;
+                    y < cx.canvas.height - marginBottom;
+                    y += stepY
+                ) {
+                    random.reset(y);
+                    for (
+                        let x = marginLeft;
+                        x < cx.canvas.width - marginRight;
+                        x += stepX
+                    ) {
+                        const randomValue = random.get();
+                        const distX = randomValue * 3;
+                        const distY = randomValue * 3;
+                        const phase = randomValue * Math.PI * 2;
+                        cx.fillStyle = "#000";
+                        cx.fillRect(
+                            x,
+                            y,
+                            sizeX + Math.sin(phase + frameTime / 1000) * distX,
+                            sizeY + Math.cos(phase + frameTime / 1000) * distY,
+                        );
+                    }
+                }
+                frameID = window.requestAnimationFrame(frame);
+            }
+
+            function resize() {
+                canvas.width = canvas.clientWidth;
+                canvas.height = canvas.clientHeight;
+            }
+
+            function start() {
+                window.addEventListener("resize", resize);
+                window.dispatchEvent(new Event("resize"));
+                frameID = window.requestAnimationFrame(frame);
+            }
+
+            start();
+        </script>
+    </body>
+</html>
