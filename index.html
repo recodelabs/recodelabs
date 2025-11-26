@@ -13,7 +13,8 @@
                 box-sizing: border-box;
             }
 
-            html, body {
+            html,
+            body {
                 width: 100%;
                 height: 100%;
                 overflow: hidden;
@@ -30,9 +31,9 @@
         <iframe id="effectFrame"></iframe>
         <script>
             const effects = [
-                'effects/ribbon.html',
-                'effects/rotating-squares.html',
-                'effects/birds.html'
+                "effects/ribbon.html",
+                "effects/rotating-squares.html",
+                "effects/birds.html",
             ];
 
             let currentEffect = null;
@@ -44,7 +45,7 @@
 
                 let available = effects;
                 if (excludeCurrent) {
-                    available = effects.filter(e => e !== currentEffect);
+                    available = effects.filter((e) => e !== currentEffect);
                 }
 
                 const index = Math.floor(Math.random() * available.length);
@@ -53,10 +54,10 @@
 
             function loadEffect(effectPath) {
                 currentEffect = effectPath;
-                document.getElementById('effectFrame').src = effectPath;
+                document.getElementById("effectFrame").src = effectPath;
 
                 // Store in sessionStorage so we know what to exclude on remix
-                sessionStorage.setItem('currentEffect', effectPath);
+                sessionStorage.setItem("currentEffect", effectPath);
             }
 
             function remix() {
@@ -65,14 +66,14 @@
             }
 
             // Listen for remix messages from child frames
-            window.addEventListener('message', function(event) {
-                if (event.data === 'remix') {
+            window.addEventListener("message", function (event) {
+                if (event.data === "remix") {
                     remix();
                 }
             });
 
             // On load, pick a random effect
-            const stored = sessionStorage.getItem('currentEffect');
+            const stored = sessionStorage.getItem("currentEffect");
             if (stored && effects.includes(stored)) {
                 // If coming back to page, pick a different one
                 currentEffect = stored;
