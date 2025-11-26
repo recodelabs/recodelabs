@@ -2,78 +2,98 @@
 // ABOUTME: Handles coloring and spin animation for the reload "o" icon
 
 function setupLogo(logoElementId, fillColor) {
-    const logoObj = document.getElementById(logoElementId);
+  const logoObj = document.getElementById(logoElementId);
 
-    logoObj.addEventListener('load', function() {
-        const svgDoc = logoObj.contentDocument;
-        const letterO = svgDoc.getElementById('reload-o');
+  logoObj.addEventListener("load", function () {
+    const svgDoc = logoObj.contentDocument;
+    const letterO = svgDoc.getElementById("reload-o");
 
-        if (!svgDoc) return;
+    if (!svgDoc) return;
 
-        // Apply fill color to all paths and polygons
-        const paths = svgDoc.querySelectorAll('path, polygon');
-        paths.forEach(p => p.style.fill = fillColor);
+    // Apply fill color to all paths and polygons
+    const paths = svgDoc.querySelectorAll("path, polygon");
+    paths.forEach((p) => (p.style.fill = fillColor));
 
-        // Style the circle stroke in the reload icon
-        const circles = svgDoc.querySelectorAll('circle');
-        circles.forEach(c => c.setAttribute('stroke', fillColor));
+    // Style the circle stroke in the reload icon
+    const circles = svgDoc.querySelectorAll("circle");
+    circles.forEach((c) => c.setAttribute("stroke", fillColor));
 
-        if (letterO) {
-            letterO.style.cursor = 'pointer';
-            letterO.style.transformOrigin = '405px 302px';
-            letterO.style.transition = 'transform 0.3s ease';
+    if (letterO) {
+      letterO.style.cursor = "pointer";
+      letterO.style.transformOrigin = "405px 302px";
+      letterO.style.transition = "transform 0.3s ease";
 
-            // Add twitch keyframes
-            if (!svgDoc.getElementById('twitch-keyframes')) {
-                const style = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'style');
-                style.id = 'twitch-keyframes';
-                style.textContent = '@keyframes twitch { 0% { transform: rotate(0deg); } 25% { transform: rotate(15deg); } 50% { transform: rotate(-10deg); } 75% { transform: rotate(5deg); } 100% { transform: rotate(0deg); } }';
-                svgDoc.documentElement.insertBefore(style, svgDoc.documentElement.firstChild);
-            }
+      // Add twitch keyframes
+      if (!svgDoc.getElementById("twitch-keyframes")) {
+        const style = svgDoc.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "style",
+        );
+        style.id = "twitch-keyframes";
+        style.textContent =
+          "@keyframes twitch { 0% { transform: rotate(0deg); } 25% { transform: rotate(15deg); } 50% { transform: rotate(-10deg); } 75% { transform: rotate(5deg); } 100% { transform: rotate(0deg); } }";
+        svgDoc.documentElement.insertBefore(
+          style,
+          svgDoc.documentElement.firstChild,
+        );
+      }
 
-            // Twitch function
-            function twitch() {
-                letterO.style.animation = 'none';
-                letterO.offsetHeight; // Force reflow
-                letterO.style.animation = 'twitch 0.4s ease-in-out';
-            }
+      // Twitch function
+      function doTwitch() {
+        letterO.style.animation = "none";
+        void letterO.offsetHeight;
+        letterO.style.animation = "twitch 0.4s ease-in-out";
+      }
 
-            // Twitch on load after a short delay
-            window.setTimeout(twitch, 800);
+      // Recursive twitch every 10 seconds
+      function scheduleNextTwitch() {
+        setTimeout(function () {
+          doTwitch();
+          scheduleNextTwitch();
+        }, 10000);
+      }
 
-            // Twitch every 10 seconds repeatedly
-            window.setInterval(function() {
-                twitch();
-            }, 10000);
+      // Initial twitch after 800ms, then start the loop
+      setTimeout(function () {
+        doTwitch();
+        scheduleNextTwitch();
+      }, 800);
 
-            letterO.addEventListener('mouseenter', function() {
-                letterO.style.transform = 'rotate(45deg)';
-            });
+      letterO.addEventListener("mouseenter", function () {
+        letterO.style.transform = "rotate(45deg)";
+      });
 
-            letterO.addEventListener('mouseleave', function() {
-                if (!letterO.classList.contains('spinning')) {
-                    letterO.style.transform = 'rotate(0deg)';
-                }
-            });
-
-            letterO.addEventListener('click', function() {
-                letterO.style.animation = 'none';
-                letterO.offsetHeight; // Trigger reflow
-                letterO.style.animation = 'spin 0.5s ease-in-out';
-
-                // Add keyframes to SVG document
-                if (!svgDoc.getElementById('spin-keyframes')) {
-                    const style = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'style');
-                    style.id = 'spin-keyframes';
-                    style.textContent = '@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
-                    svgDoc.documentElement.insertBefore(style, svgDoc.documentElement.firstChild);
-                }
-
-                setTimeout(function() {
-                    letterO.style.animation = '';
-                    window.parent.postMessage('remix', '*');
-                }, 500);
-            });
+      letterO.addEventListener("mouseleave", function () {
+        if (!letterO.classList.contains("spinning")) {
+          letterO.style.transform = "rotate(0deg)";
         }
-    });
+      });
+
+      letterO.addEventListener("click", function () {
+        letterO.style.animation = "none";
+        letterO.offsetHeight;
+        letterO.style.animation = "spin 0.5s ease-in-out";
+
+        // Add keyframes to SVG document
+        if (!svgDoc.getElementById("spin-keyframes")) {
+          const style = svgDoc.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "style",
+          );
+          style.id = "spin-keyframes";
+          style.textContent =
+            "@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }";
+          svgDoc.documentElement.insertBefore(
+            style,
+            svgDoc.documentElement.firstChild,
+          );
+        }
+
+        setTimeout(function () {
+          letterO.style.animation = "";
+          window.parent.postMessage("remix", "*");
+        }, 500);
+      });
+    }
+  });
 }

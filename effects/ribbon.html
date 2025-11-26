@@ -52,17 +52,22 @@
     <body>
         <div id="svgContainer"></div>
         <div class="container">
-            <object type="image/svg+xml" data="../image/recodelabs.svg" class="logo" id="logo"></object>
+            <object
+                type="image/svg+xml"
+                data="../image/recodelabs.svg"
+                class="logo"
+                id="logo"
+            ></object>
         </div>
         <script>
-            fetch('../image/ribbons.svg')
-                .then(response => response.text())
-                .then(svgText => {
-                    const container = document.getElementById('svgContainer');
+            fetch("../image/ribbons.svg")
+                .then((response) => response.text())
+                .then((svgText) => {
+                    const container = document.getElementById("svgContainer");
                     container.innerHTML = svgText;
 
-                    const svg = container.querySelector('svg');
-                    svg.classList.add('background-svg');
+                    const svg = container.querySelector("svg");
+                    svg.classList.add("background-svg");
 
                     const paths = svg.querySelectorAll("path");
                     let defs = svg.querySelector("defs");
@@ -103,11 +108,34 @@
 
                     svg.style.opacity = 1;
                 })
-                .catch(err => console.error('Failed to load ribbons.svg:', err));
+                .catch((err) =>
+                    console.error("Failed to load ribbons.svg:", err),
+                );
         </script>
         <script src="logo-setup.js"></script>
         <script>
-            setupLogo('logo', 'white');
+            setupLogo("logo", "white");
+
+            // Twitch timer
+            setInterval(function () {
+                var logo = document.getElementById("logo");
+                if (logo && logo.contentDocument) {
+                    var o = logo.contentDocument.getElementById("reload-o");
+                    if (o) {
+                        o.style.transition = "transform 0.1s ease-in-out";
+                        o.style.transform = "rotate(15deg)";
+                        setTimeout(function () {
+                            o.style.transform = "rotate(-10deg)";
+                            setTimeout(function () {
+                                o.style.transform = "rotate(5deg)";
+                                setTimeout(function () {
+                                    o.style.transform = "rotate(0deg)";
+                                }, 100);
+                            }, 100);
+                        }, 100);
+                    }
+                }
+            }, 7000);
         </script>
     </body>
 </html>

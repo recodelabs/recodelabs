@@ -46,7 +46,8 @@
                 height: auto;
             }
 
-            .logo path, .logo polygon {
+            .logo path,
+            .logo polygon {
                 fill: #e05939;
             }
 
@@ -65,8 +66,12 @@
             }
 
             @keyframes spin {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
             }
 
             .remix-btn {
@@ -95,7 +100,12 @@
     <body>
         <canvas></canvas>
         <div class="container">
-            <object type="image/svg+xml" data="../image/recodelabs.svg" class="logo" id="logo"></object>
+            <object
+                type="image/svg+xml"
+                data="../image/recodelabs.svg"
+                class="logo"
+                id="logo"
+            ></object>
         </div>
         <script>
             const canvas = document.querySelector("canvas");
@@ -182,7 +192,28 @@
         </script>
         <script src="logo-setup.js"></script>
         <script>
-            setupLogo('logo', '#e05939');
+            setupLogo("logo", "#e05939");
+
+            // Twitch timer
+            setInterval(function () {
+                var logo = document.getElementById("logo");
+                if (logo && logo.contentDocument) {
+                    var o = logo.contentDocument.getElementById("reload-o");
+                    if (o) {
+                        o.style.transition = "transform 0.1s ease-in-out";
+                        o.style.transform = "rotate(15deg)";
+                        setTimeout(function () {
+                            o.style.transform = "rotate(-10deg)";
+                            setTimeout(function () {
+                                o.style.transform = "rotate(5deg)";
+                                setTimeout(function () {
+                                    o.style.transform = "rotate(0deg)";
+                                }, 100);
+                            }, 100);
+                        }, 100);
+                    }
+                }
+            }, 7000);
         </script>
     </body>
 </html>

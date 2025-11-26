@@ -83,6 +83,27 @@
         <script src="logo-setup.js"></script>
         <script>
             setupLogo("logo", "white");
+
+            // Twitch timer
+            setInterval(function () {
+                var logo = document.getElementById("logo");
+                if (logo && logo.contentDocument) {
+                    var o = logo.contentDocument.getElementById("reload-o");
+                    if (o) {
+                        o.style.transition = "transform 0.1s ease-in-out";
+                        o.style.transform = "rotate(15deg)";
+                        setTimeout(function () {
+                            o.style.transform = "rotate(-10deg)";
+                            setTimeout(function () {
+                                o.style.transform = "rotate(5deg)";
+                                setTimeout(function () {
+                                    o.style.transform = "rotate(0deg)";
+                                }, 100);
+                            }, 100);
+                        }, 100);
+                    }
+                }
+            }, 7000);
         </script>
     </body>
 </html>
