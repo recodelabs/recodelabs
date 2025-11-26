@@ -31,13 +31,20 @@ function setupLogo(logoElementId, fillColor) {
                 svgDoc.documentElement.insertBefore(style, svgDoc.documentElement.firstChild);
             }
 
-            // Twitch on load after a short delay
-            setTimeout(function() {
+            // Twitch function
+            let twitchCount = 0;
+            function twitch() {
+                twitchCount++;
+                letterO.style.animation = 'none';
+                letterO.offsetHeight; // Force reflow
                 letterO.style.animation = 'twitch 0.4s ease-in-out';
-                setTimeout(function() {
-                    letterO.style.animation = '';
-                }, 400);
-            }, 800);
+            }
+
+            // Twitch on load after a short delay
+            setTimeout(twitch, 800);
+
+            // Twitch every 10 seconds
+            setInterval(twitch, 10000);
 
             letterO.addEventListener('mouseenter', function() {
                 letterO.style.transform = 'rotate(45deg)';
