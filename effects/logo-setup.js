@@ -32,19 +32,19 @@ function setupLogo(logoElementId, fillColor) {
             }
 
             // Twitch function
-            let twitchCount = 0;
             function twitch() {
-                twitchCount++;
                 letterO.style.animation = 'none';
                 letterO.offsetHeight; // Force reflow
                 letterO.style.animation = 'twitch 0.4s ease-in-out';
             }
 
             // Twitch on load after a short delay
-            setTimeout(twitch, 800);
+            window.setTimeout(twitch, 800);
 
-            // Twitch every 10 seconds
-            setInterval(twitch, 10000);
+            // Twitch every 10 seconds repeatedly
+            window.setInterval(function() {
+                twitch();
+            }, 10000);
 
             letterO.addEventListener('mouseenter', function() {
                 letterO.style.transform = 'rotate(45deg)';
