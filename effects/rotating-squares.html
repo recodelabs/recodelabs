@@ -44,9 +44,29 @@
             .logo {
                 width: 40vw;
                 height: auto;
-                filter: brightness(0) saturate(100%) invert(44%) sepia(93%)
-                    saturate(1479%) hue-rotate(338deg) brightness(92%)
-                    contrast(89%);
+            }
+
+            .logo path, .logo polygon {
+                fill: #e05939;
+            }
+
+            .logo .letter-o {
+                cursor: pointer;
+                transform-origin: 405px 302px;
+                transition: transform 0.3s ease;
+            }
+
+            .logo .letter-o:hover {
+                transform: rotate(45deg);
+            }
+
+            .logo .letter-o.spinning {
+                animation: spin 0.5s ease-in-out;
+            }
+
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
             }
 
             .remix-btn {
@@ -75,18 +95,7 @@
     <body>
         <canvas></canvas>
         <div class="container">
-            <img src="../image/recodelabs.svg" alt="Recode Labs" class="logo" />
-            <button
-                class="remix-btn"
-                onclick="window.parent.postMessage('remix', '*')"
-                title="Remix"
-            >
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
-                    />
-                </svg>
-            </button>
+            <object type="image/svg+xml" data="../image/recodelabs.svg" class="logo" id="logo"></object>
         </div>
         <script>
             const canvas = document.querySelector("canvas");
@@ -143,8 +152,8 @@
                         x += stepX
                     ) {
                         const randomValue = random.get();
-                        const distX = randomValue * 3;
-                        const distY = randomValue * 3;
+                        const distX = randomValue * 4;
+                        const distY = randomValue * 4;
                         const phase = randomValue * Math.PI * 2;
                         cx.fillStyle = "#000";
                         cx.fillRect(
@@ -170,6 +179,10 @@
             }
 
             start();
+        </script>
+        <script src="logo-setup.js"></script>
+        <script>
+            setupLogo('logo', '#e05939');
         </script>
     </body>
 </html>
