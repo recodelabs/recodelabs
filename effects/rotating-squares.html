@@ -6,6 +6,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Recode Labs - Rotating Squares</title>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
         <style>
             * {
                 margin: 0;
@@ -95,10 +96,24 @@
                 height: 32px;
                 fill: #e05939;
             }
+
+            .contact-email {
+                position: fixed;
+                bottom: 30px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                z-index: 10;
+                font-family: 'IBM Plex Mono', monospace;
+                font-size: 16px;
+                text-decoration: none;
+                color: #e05939;
+            }
         </style>
     </head>
     <body>
         <canvas></canvas>
+        <a href="mailto:info@recodelabs.org" class="contact-email">info@recodelabs.org</a>
         <div class="container">
             <object
                 type="image/svg+xml"
