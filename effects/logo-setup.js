@@ -43,17 +43,12 @@ function setupLogo(logoElementId, fillColor) {
       letterO.style.animation = "twitch 0.4s ease-in-out";
     }, 800);
 
+    let canSpin = true;
+
     letterO.addEventListener("mouseenter", function () {
-      letterO.style.transform = "rotate(45deg)";
-    });
+      if (!canSpin) return;
+      canSpin = false;
 
-    letterO.addEventListener("mouseleave", function () {
-      if (!letterO.classList.contains("spinning")) {
-        letterO.style.transform = "rotate(0deg)";
-      }
-    });
-
-    letterO.addEventListener("click", function () {
       letterO.style.animation = "none";
       letterO.offsetHeight;
       letterO.style.animation = "spin 0.5s ease-in-out";
@@ -70,6 +65,14 @@ function setupLogo(logoElementId, fillColor) {
         letterO.style.animation = "";
         window.parent.postMessage("remix", "*");
       }, 500);
+
+      setTimeout(function () {
+        canSpin = true;
+      }, 2000);
+    });
+
+    letterO.addEventListener("mouseleave", function () {
+      letterO.style.transform = "rotate(0deg)";
     });
   }
 
