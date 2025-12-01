@@ -1,0 +1,159 @@
+<!-- ABOUTME: Octagons animation effect for Recode Labs -->
+<!-- ABOUTME: CSS-only animated octagon pattern using conic gradients -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Recode Labs - Octagons</title>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+        <style>
+            @property --a{
+                syntax: '<angle>';
+                inherits: true;
+                initial-value: 0deg;
+            }
+            @property --p {
+                syntax: '<percentage>';
+                inherits: true;
+                initial-value: 0%;
+            }
+            @property --c1 {
+                syntax: '<color>';
+                inherits: true;
+                initial-value: #000;
+            }
+            @property --c2 {
+                syntax: '<color>';
+                inherits: true;
+                initial-value: #000;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                --s: 80px;
+                --_g: #0000, var(--c1) 2deg calc(var(--a) - 2deg),#0000 var(--a);
+                background:
+                    conic-gradient(from calc(-45deg  - var(--a)/2) at top    var(--p) left  var(--p),var(--_g)),
+                    conic-gradient(from calc(-45deg  - var(--a)/2) at top    var(--p) left  var(--p),var(--_g)),
+                    conic-gradient(from calc( 45deg  - var(--a)/2) at top    var(--p) right var(--p),var(--_g)),
+                    conic-gradient(from calc( 45deg  - var(--a)/2) at top    var(--p) right var(--p),var(--_g)),
+                    conic-gradient(from calc(-135deg - var(--a)/2) at bottom var(--p) left  var(--p),var(--_g)),
+                    conic-gradient(from calc(-135deg - var(--a)/2) at bottom var(--p) left  var(--p),var(--_g)),
+                    conic-gradient(from calc( 135deg - var(--a)/2) at bottom var(--p) right var(--p),var(--_g)),
+                    conic-gradient(from calc( 135deg - var(--a)/2) at bottom var(--p) right var(--p),var(--_g))
+                    var(--c2);
+                background-size: calc(2*var(--s)) calc(2*var(--s));
+                animation: m 2s infinite alternate linear;
+                height: 100%;
+            }
+
+            @keyframes m {
+                0%,15% {
+                    --a: 135deg;
+                    --p: 20%;
+                    --c1: #3B8183;
+                    --c2: #FAD089;
+                    background-position: 0 0,var(--s) var(--s);
+                }
+                45%,50% {
+                    --a: 90deg;
+                    --p: 25%;
+                    --c1: #3B8183;
+                    --c2: #FAD089;
+                    background-position: 0 0,var(--s) var(--s);
+                }
+                50.01%,55% {
+                    --a: 90deg;
+                    --p: 25%;
+                    --c2: #3B8183;
+                    --c1: #FAD089;
+                    background-position: var(--s) 0,0 var(--s);
+                }
+                85%,100% {
+                    --a: 135deg;
+                    --p: 20%;
+                    --c2: #3B8183;
+                    --c1: #FAD089;
+                    background-position: var(--s) 0,0 var(--s);
+                }
+            }
+
+            body {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .container {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .logo {
+                width: 40vw;
+                height: auto;
+            }
+
+            .contact-email {
+                position: fixed;
+                bottom: 30px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                z-index: 10;
+                font-family: 'IBM Plex Mono', monospace;
+                font-size: 16px;
+                text-decoration: none;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="mailto:info@recodelabs.org" class="contact-email">info@recodelabs.org</a>
+        <div class="container">
+            <object
+                type="image/svg+xml"
+                data="../image/recodelabs.svg"
+                class="logo"
+                id="logo"
+            ></object>
+        </div>
+        <script src="logo-setup.js"></script>
+        <script>
+            setupLogo("logo", "white");
+
+            // Twitch timer
+            setInterval(function () {
+                var logo = document.getElementById("logo");
+                if (logo && logo.contentDocument) {
+                    var o = logo.contentDocument.getElementById("reload-o");
+                    if (o) {
+                        o.style.transition = "transform 0.1s ease-in-out";
+                        o.style.transform = "rotate(15deg)";
+                        setTimeout(function () {
+                            o.style.transform = "rotate(-10deg)";
+                            setTimeout(function () {
+                                o.style.transform = "rotate(5deg)";
+                                setTimeout(function () {
+                                    o.style.transform = "rotate(0deg)";
+                                }, 100);
+                            }, 100);
+                        }, 100);
+                    }
+                }
+            }, 7000);
+        </script>
+    </body>
+</html>
