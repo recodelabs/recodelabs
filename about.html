@@ -97,6 +97,57 @@
   .cta .buttons { display: flex; gap: 12px; }
 
   .intro-p { font-size: 17px; line-height: 1.55; color: var(--color-text-secondary); max-width: 62ch; margin-top: 8px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .page-head { padding: 48px 0 32px; }
+    .page-head h1 { font-size: 56px; }
+    .page-head .sub { grid-template-columns: 1fr; gap: 24px; align-items: start; margin-top: 28px; }
+    .page-head .sub > div { justify-self: start !important; flex-wrap: wrap; }
+    .section-h { grid-template-columns: 1fr; padding: 56px 0 20px; }
+    .section-h h2 { font-size: 40px; }
+    .section-h .rt { justify-self: start; text-align: left; }
+    .principal { grid-template-columns: 1fr; }
+    .portrait { border-right: none; border-bottom: 1px solid var(--ink-900); min-height: auto; }
+    .portrait .canvas img { width: 240px; height: 240px; }
+    .bio { padding: 28px; }
+    .bio h3 { font-size: 44px; }
+    .bio .quote { font-size: 18px; }
+    .team-grid { grid-template-columns: 1fr; gap: 12px; }
+    .seat { min-height: auto; }
+    .caps-grid { grid-template-columns: 1fr; }
+    .cap { border-right: none; border-bottom: 1px solid var(--color-line-hairline); padding: 28px; }
+    .cap:last-child { border-bottom: none; }
+    .cap:nth-last-child(-n+2) { border-bottom: 1px solid var(--color-line-hairline); }
+    .cap:last-child { border-bottom: none; }
+    .cap h3 { font-size: 26px; }
+    .cta { grid-template-columns: 1fr; align-items: start; gap: 24px; padding: 56px 0 64px; }
+    .cta h2 { font-size: 40px; }
+  }
+  @media (max-width: 640px) {
+    .page-head { padding: 32px 0 24px; }
+    .page-head h1 { font-size: 38px; line-height: 1.04; }
+    .page-head .lede { font-size: 16px; }
+    .section-h { padding: 40px 0 16px; }
+    .section-h h2 { font-size: 30px; }
+    .portrait .canvas img { width: 180px; height: 180px; }
+    .portrait .canvas .frame { padding: 3px; }
+    .bio { padding: 22px; }
+    .bio h3 { font-size: 32px; }
+    .bio .lede { font-size: 15px; }
+    .bio .quote { font-size: 16px; padding-top: 18px; }
+    .bio .foot { flex-wrap: wrap; gap: 8px; }
+    .bio .foot .btn { font-size: 12px; padding: 9px 12px; }
+    .seat { padding: 22px; }
+    .seat h4 { font-size: 22px; }
+    .cap { padding: 22px; }
+    .cap h3 { font-size: 22px; }
+    .cap p { font-size: 14px; }
+    .cap .diagram { height: 100px; margin: 0 -22px; }
+    .cta { padding: 40px 0 48px; }
+    .cta h2 { font-size: 28px; }
+    .cta .buttons { flex-wrap: wrap; }
+  }
 </style>
 </head>
 <body>

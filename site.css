@@ -39,3 +39,23 @@ a { color: inherit; }
 
 /* Plates (mono spec stack at top-right of hero/page-head) */
 .plates { position: absolute; top: 72px; right: 80px; display: flex; flex-direction: column; gap: 8px; align-items: flex-end; font-family: var(--font-mono); font-size: 10px; line-height: 1; letter-spacing: 0.14em; color: var(--color-text-secondary); text-transform: uppercase; white-space: nowrap; }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .wrap { padding: 0 40px; }
+  .plates { right: 40px; }
+}
+
+@media (max-width: 640px) {
+  .wrap { padding: 0 20px; }
+  .nav { padding: 14px 0; flex-wrap: wrap; gap: 12px; }
+  .brand .meta { display: none; }
+  .navlinks { gap: 16px; flex-wrap: wrap; }
+  .navlinks a:not(.btn) { font-size: 13px; }
+  .navlinks a.btn { padding: 8px 12px; font-size: 12px; }
+  .plates { display: none; }
+  .foot-bot { flex-direction: column; gap: 8px; align-items: flex-start; padding: 16px 0; font-size: 9px; }
+}

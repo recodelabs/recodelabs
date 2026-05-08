@@ -73,6 +73,37 @@
   .cta h2 { font-family: var(--font-display); font-weight: 500; font-size: 72px; line-height: 0.98; letter-spacing: -0.04em; max-width: 16ch; }
   .cta h2 .acc { color: var(--signal-500); }
   .cta .buttons { display: flex; gap: 12px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .section-h { grid-template-columns: 1fr; }
+    .section-h h2 { font-size: 40px; }
+    .section-h .rt { justify-self: start; text-align: left; }
+    .card { grid-template-columns: 1fr; min-height: auto; }
+    .card .body { border-right: none; border-bottom: 1px solid var(--ink-900); padding: 28px; }
+    .card.reverse .body { order: 0; border-left: none; border-top: 1px solid var(--ink-900); border-bottom: none; }
+    .card.reverse .visual { order: 1; }
+    .card h2 { font-size: 44px; }
+    .card .visual { min-height: 320px; }
+    .card .visual svg { inset: 44px 24px 24px 24px; width: calc(100% - 48px); height: calc(100% - 68px); }
+    .card .visual img.shot { inset: 44px 16px 16px 16px; width: calc(100% - 32px); height: calc(100% - 60px); }
+    .card .stats { grid-template-columns: 1fr 1fr; }
+    .cta { grid-template-columns: 1fr; align-items: start; gap: 24px; padding: 56px 0; }
+    .cta h2 { font-size: 44px; }
+  }
+  @media (max-width: 640px) {
+    .card .body { padding: 22px; }
+    .card h2 { font-size: 32px; }
+    .card .lede { font-size: 14px; }
+    .card .stats { grid-template-columns: 1fr; gap: 12px; padding-top: 16px; }
+    .card .stat .v { font-size: 22px; }
+    .card .visual { min-height: 240px; }
+    .card .foot { flex-wrap: wrap; gap: 8px; }
+    .card .foot .btn { font-size: 12px; padding: 9px 12px; }
+    .cta { padding: 40px 0; }
+    .cta h2 { font-size: 30px; }
+    .cta .buttons { flex-wrap: wrap; }
+  }
 </style>
 </head>
 <body>
