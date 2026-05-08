@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recode Labs — Team &amp; Capabilities</title>
+<meta name="description" content="A small lab with a wide bench. Matt Berg leads Recode Labs; the work is carried by a rotating bench of engineers, designers, and data scientists.">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* PAGE HEADER */
+  .page-head { padding: 72px 0 48px; border-bottom: 1px solid var(--ink-900); position: relative; }
+  .page-head .eyebrow { display: flex; gap: 14px; align-items: center; margin-bottom: 24px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .page-head .eyebrow .dot { width: 6px; height: 6px; background: var(--signal-500); }
+  .page-head h1 { font-family: var(--font-display); font-weight: 500; font-size: 72px; line-height: 1; letter-spacing: -0.035em; max-width: 1100px; }
+  .page-head h1 .acc { color: var(--signal-500); }
+  .page-head .sub { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; margin-top: 40px; align-items: end; }
+  .page-head .lede { font-size: 19px; line-height: 1.45; max-width: 56ch; color: var(--color-text-secondary); letter-spacing: -0.005em; }
+  .page-head .lede strong { color: var(--ink-900); font-weight: 500; }
+
+  /* SECTION HEADER */
+  .section-h { display: grid; grid-template-columns: 1fr auto; gap: 12px 40px; align-items: end; padding: 72px 0 24px; }
+  .section-h .lbl { grid-column: 1 / -1; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); padding-bottom: 12px; border-bottom: 1px solid var(--color-line-hairline); }
+  .section-h h2 { font-family: var(--font-display); font-weight: 500; font-size: 56px; line-height: 1; letter-spacing: -0.035em; }
+  .section-h h2 .acc { color: var(--signal-500); }
+  .section-h .rt { justify-self: end; text-align: right; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); }
+
+  /* PRINCIPAL */
+  .principal { display: grid; grid-template-columns: 440px 1fr; border: 1px solid var(--ink-900); background: var(--bone-50); margin-top: 24px; }
+  .portrait { border-right: 1px solid var(--ink-900); display: flex; flex-direction: column; min-height: 560px; }
+  .portrait .pmeta { display: flex; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--color-line-hairline); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); }
+  .portrait .canvas { flex: 1; position: relative;
+    background:
+      linear-gradient(var(--color-line-ghost) 1px, transparent 1px) 0 0 / 100% 32px,
+      linear-gradient(90deg, var(--color-line-ghost) 1px, transparent 1px) 0 0 / 32px 100%,
+      var(--bone-50);
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+  }
+  .portrait .canvas .frame { position: relative; border: 1px solid var(--ink-900); padding: 4px; background: var(--bone-50); }
+  .portrait .canvas .frame::before, .portrait .canvas .frame::after { content: ''; position: absolute; width: 10px; height: 10px; border: 0 solid var(--ink-900); }
+  .portrait .canvas .frame::before { top: -6px; left: -6px; border-top-width: 1px; border-left-width: 1px; }
+  .portrait .canvas .frame::after  { bottom: -6px; right: -6px; border-bottom-width: 1px; border-right-width: 1px; }
+  .portrait .canvas img { display: block; width: 320px; height: 320px; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+  .portrait .pbottom { display: flex; justify-content: space-between; padding: 12px 20px; border-top: 1px solid var(--color-line-hairline); font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-caption); }
+
+  .bio { padding: 32px 36px; display: flex; flex-direction: column; }
+  .bio .idrow { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); padding-bottom: 16px; border-bottom: 1px solid var(--color-line-hairline); }
+  .bio .idrow .n { color: var(--signal-500); font-weight: 500; }
+  .bio h3 { font-family: var(--font-display); font-weight: 500; font-size: 56px; line-height: 0.98; letter-spacing: -0.035em; margin-top: 28px; }
+  .bio .role { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); margin-top: 16px; }
+  .bio .lede { font-size: 17px; line-height: 1.55; color: var(--color-text); margin-top: 20px; max-width: 52ch; }
+  .bio .lede strong { color: var(--ink-900); font-weight: 500; }
+  .bio .quote { margin-top: 28px; padding: 24px 0 0; border-top: 1px solid var(--color-line-hairline); font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 22px; line-height: 1.35; letter-spacing: -0.01em; color: var(--ink-900); max-width: 44ch; }
+  .bio .quote::before { content: '"'; color: var(--signal-500); font-size: 1.1em; margin-right: 4px; }
+  .bio .refs { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-caption); margin-top: 20px; line-height: 1.6; }
+  .bio .foot { margin-top: auto; padding-top: 24px; display: flex; gap: 10px; }
+
+  /* TEAM GRID */
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+  .seat { border: 1px solid var(--ink-900); padding: 28px 24px; background: var(--bone-50); display: flex; flex-direction: column; min-height: 300px; }
+  .seat .n { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal-500); font-weight: 500; }
+  .seat .silhouette { margin: 16px 0 22px; display: flex; align-items: center; justify-content: center; height: 90px;
+    background:
+      linear-gradient(var(--color-line-ghost) 1px, transparent 1px) 0 0 / 100% 18px,
+      linear-gradient(90deg, var(--color-line-ghost) 1px, transparent 1px) 0 0 / 18px 100%;
+    border-top: 1px dashed var(--color-line-hairline);
+    border-bottom: 1px dashed var(--color-line-hairline);
+  }
+  .seat h4 { font-family: var(--font-display); font-weight: 500; font-size: 26px; line-height: 1.05; letter-spacing: -0.025em; }
+  .seat h4 .acc { color: var(--signal-500); }
+  .seat .desc { font-size: 14px; line-height: 1.5; color: var(--color-text-secondary); margin-top: 10px; }
+  .seat .tags { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-caption); margin-top: auto; padding-top: 18px; border-top: 1px solid var(--color-line-hairline); }
+
+  /* CAPABILITIES */
+  .caps-grid { display: grid; grid-template-columns: repeat(2, 1fr); border: 1px solid var(--ink-900); margin-top: 24px; }
+  .cap { padding: 32px 32px 28px; border-right: 1px solid var(--color-line-hairline); border-bottom: 1px solid var(--color-line-hairline); display: flex; flex-direction: column; gap: 14px; min-height: 260px; }
+  .cap:nth-child(2n) { border-right: none; }
+  .cap:nth-last-child(-n+2) { border-bottom: none; }
+  .cap:last-child:nth-child(odd) { border-right: none; }
+  .cap .row1 { display: flex; justify-content: space-between; align-items: flex-start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); }
+  .cap .row1 .n { color: var(--signal-500); font-weight: 500; }
+  .cap .diagram { height: 160px; display: flex; align-items: center; justify-content: center;
+    margin: 0 -32px;
+    overflow: hidden;
+  }
+  .cap .diagram img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .cap h3 { font-family: var(--font-display); font-weight: 500; font-size: 32px; line-height: 1.02; letter-spacing: -0.03em; }
+  .cap h3 .acc { color: var(--signal-500); }
+  .cap p { font-size: 15px; line-height: 1.55; color: var(--color-text-secondary); max-width: 48ch; }
+  .cap .ex { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-caption); margin-top: auto; padding-top: 12px; border-top: 1px solid var(--color-line-hairline); }
+  .cap .ex strong { color: var(--ink-900); font-weight: 500; }
+
+  /* CTA */
+  .cta { padding: 72px 0 80px; border-top: 1px solid var(--ink-900); display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; margin-top: 72px; }
+  .cta h2 { font-family: var(--font-display); font-weight: 500; font-size: 72px; line-height: 0.98; letter-spacing: -0.04em; max-width: 16ch; }
+  .cta h2 .acc { color: var(--signal-500); }
+  .cta .buttons { display: flex; gap: 12px; }
+
+  .intro-p { font-size: 17px; line-height: 1.55; color: var(--color-text-secondary); max-width: 62ch; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="brand">
+      <a href="index.html" style="display:inline-block; line-height:0;">
+        <img src="assets/wordmark.svg" alt="Recode Labs" style="height:28px; display:block;">
+      </a>
+      <div class="meta">APPLIED · AI<br>EST · 2025</div>
+    </div>
+    <div class="navlinks">
+      <a href="index.html">Work</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html" class="active">About</a>
+      <a class="btn" href="mailto:hello@recodelabs.org">Work with us <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <section class="page-head">
+    <div class="eyebrow"><span class="dot"></span>SHEET 04 · TEAM &amp; CAPABILITIES · REV A<span style="color: var(--color-text-caption)">·  04 PRACTICES</span></div>
+    <h1>A small lab.<br>A deep <span class="acc">bench</span>.</h1>
+    <div class="sub">
+      <p class="lede">Recode Labs is a <strong>principal + practice</strong>. A single named partner sets the direction; the work is carried by a rotating bench of <strong>engineers, designers, and data scientists</strong> who have shipped systems in the places we build for.</p>
+      <div style="display:flex; gap:12px; justify-self:end;">
+        <a href="#capabilities" class="btn">Jump to capabilities <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
+        <a href="projects.html" class="btn ghost">See the projects</a>
+      </div>
+    </div>
+    <div class="plates">
+      <div>SHEET 04 / 06</div>
+      <div>REV. A · 2026-04-19</div>
+      <div>RL-TEAM-CAP</div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section-h" id="team">
+    <div class="lbl">FIG. 04A · THE PRINCIPAL</div>
+    <h2>The <span class="acc">principal</span>.</h2>
+    <div class="rt">NAMED · ACCOUNTABLE · HANDS-ON</div>
+  </section>
+
+  <div class="principal">
+    <div class="portrait">
+      <div class="pmeta"><span>PLATE · 01 · PORTRAIT</span><span>GRAYSCALE · ARCHIVAL</span></div>
+      <div class="canvas">
+        <div class="frame">
+          <img src="assets/team/matt-berg.jpeg" alt="Matt Berg">
+        </div>
+      </div>
+      <div class="pbottom"><span>MATT BERG · 2026</span><span>RL-PRN-01</span></div>
+    </div>
+    <div class="bio">
+      <div class="idrow">
+        <span class="n">PRINCIPAL · 01 / MATT BERG</span>
+        <span>FOUNDER · DIRECTOR</span>
+      </div>
+      <h3>Matt Berg.</h3>
+      <div class="role">APPLIED AI · GLOBAL HEALTH · INFRASTRUCTURE · BURLINGTON VT</div>
+      <p class="lede">
+        Matt leads <strong>Recode Labs</strong>. Two decades building software for global development — from open-source platforms to production health systems deployed across Africa and South East Asia. <strong>Time 100. Founder. CEO. </strong> Now focused on building systems that would have been unimaginable without AI.
+      </p>
+      <div class="quote">The most impactful AI work this decade will be done by small teams in the places where the problems actually live.</div>
+      <div class="refs">WORK · GEEKCORPS · COLUMBIA UNIVERSITY · UNICEF · ONA</div>
+      <div class="foot">
+        <a href="https://www.linkedin.com/in/mattlberg/" target="_blank" rel="noopener" class="btn">LinkedIn <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENCH -->
+  <section class="section-h" id="bench">
+    <div class="lbl">FIG. 04B · THE BENCH</div>
+    <h2>A rotating <span class="acc">bench</span>.</h2>
+    <div class="rt">ENGINEERS · DESIGNERS · DATA SCIENTISTS</div>
+  </section>
+
+  <p class="intro-p">
+      Every project draws from a network of <b>experts</b> we have worked with across the last decade.
+  </p>
+
+  <div class="team-grid">
+    <div class="seat">
+      <div class="n">DISCIPLINE · 01 · ENGINEERS</div>
+      <div class="silhouette">
+        <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:80px;">
+          <g class="bp-stroke">
+            <circle cx="20" cy="40" r="6" fill="var(--bone-50)"/>
+            <circle cx="60" cy="22" r="6" fill="var(--bone-50)"/>
+            <circle cx="60" cy="58" r="6" fill="var(--bone-50)"/>
+            <circle cx="100" cy="40" r="6" fill="var(--bone-50)"/>
+            <line x1="26" y1="38" x2="54" y2="24"/>
+            <line x1="26" y1="42" x2="54" y2="56"/>
+            <line x1="66" y1="22" x2="94" y2="38"/>
+            <line x1="66" y1="58" x2="94" y2="42"/>
+            <line x1="60" y1="28" x2="60" y2="52" class="bp-signal"/>
+          </g>
+          <text x="60" y="76" text-anchor="middle" class="bp-label">DISTRIBUTED SYSTEMS</text>
+        </svg>
+      </div>
+      <h4>Build the <span class="acc">thing</span>.</h4>
+      <p class="desc">Full-stack and infra engineers who ship production systems in low-bandwidth, high-stakes environments. Comfortable with Kubernetes and SIM cards alike.</p>
+      <div class="tags">TS · PY · GO · KUBERNETES · POSTGRES · FHIR</div>
+    </div>
+
+    <div class="seat">
+      <div class="n">DISCIPLINE · 02 · DESIGNERS</div>
+      <div class="silhouette">
+        <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:80px;">
+          <g class="bp-stroke">
+            <rect x="14" y="16" width="60" height="48" fill="var(--bone-50)"/>
+            <line x1="14" y1="26" x2="74" y2="26" class="bp-thin"/>
+            <line x1="14" y1="36" x2="60" y2="36" class="bp-thin"/>
+            <line x1="14" y1="46" x2="66" y2="46" class="bp-thin"/>
+            <line x1="14" y1="56" x2="48" y2="56" class="bp-thin"/>
+            <path d="M82 44 A14 14 0 0 1 106 44" class="bp-signal"/>
+            <circle cx="94" cy="44" r="2" fill="var(--signal-500)" stroke="none"/>
+            <line x1="94" y1="44" x2="94" y2="62" class="bp-thin"/>
+          </g>
+          <text x="60" y="76" text-anchor="middle" class="bp-label">INTERFACE · RESEARCH</text>
+        </svg>
+      </div>
+      <h4>Give it a <span class="acc">shape</span>.</h4>
+      <p class="desc">Product and systems designers who run field research, prototype in code, and draw the picture a minister or a clinician can hold in their head.</p>
+      <div class="tags">FIGMA · HTML · RESEARCH · MOTION · CONTENT</div>
+    </div>
+
+    <div class="seat">
+      <div class="n">DISCIPLINE · 03 · DATA SCIENTISTS</div>
+      <div class="silhouette">
+        <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:80px;">
+          <g class="bp-stroke">
+            <line x1="14" y1="60" x2="106" y2="60"/>
+            <line x1="14" y1="60" x2="14" y2="14"/>
+            <circle cx="26" cy="52" r="2" fill="var(--ink-900)"/>
+            <circle cx="34" cy="44" r="2" fill="var(--ink-900)"/>
+            <circle cx="44" cy="46" r="2" fill="var(--ink-900)"/>
+            <circle cx="52" cy="36" r="2" fill="var(--ink-900)"/>
+            <circle cx="62" cy="32" r="2" fill="var(--ink-900)"/>
+            <circle cx="72" cy="26" r="2" fill="var(--signal-500)" stroke="none"/>
+            <circle cx="82" cy="22" r="2" fill="var(--signal-500)" stroke="none"/>
+            <circle cx="92" cy="18" r="2" fill="var(--signal-500)" stroke="none"/>
+            <path d="M20 56 Q60 40 100 16" class="bp-signal"/>
+          </g>
+          <text x="60" y="76" text-anchor="middle" class="bp-label">EVIDENCE · INFERENCE</text>
+        </svg>
+      </div>
+      <h4>Prove it <span class="acc">works</span>.</h4>
+      <p class="desc">ML and applied-stats researchers who design evaluations that match how the system is actually used.</p>
+      <div class="tags">TORCH · JAX · PYMC · STATS · EVAL · LLM</div>
+    </div>
+  </div>
+
+  <!-- CAPABILITIES -->
+  <section class="section-h" id="capabilities" style="padding-top: 96px;">
+    <div class="lbl">FIG. 05 · CAPABILITIES</div>
+    <h2>What we <span class="acc">do</span>.</h2>
+    <div class="rt">FOUR PRACTICES · ONE LAB</div>
+  </section>
+
+  <p class="intro-p">
+    We don't sell frameworks. Each capability is a standing practice — engagements typically draw on two or three.
+  </p>
+
+  <div class="caps-grid">
+
+    <div class="cap">
+      <div class="row1"><span class="n">01</span><span>AMBIENT · VOICE</span></div>
+      <div class="diagram">
+        <img src="assets/capabilities/ambient.png" alt="Ambient voice diagram">
+      </div>
+      <h3>Ambient &amp; voice <span class="acc">interfaces</span>.</h3>
+      <p>Speech, transcription, and low-attention UI for places where typing isn't possible — exam rooms, field visits, class rooms.</p>
+      <div class="ex"><strong>STACK</strong> · STT · DIARIZATION · ON-DEVICE · SWAHILI / AM / YO</div>
+    </div>
+
+    <div class="cap">
+      <div class="row1"><span class="n">02</span><span>HEALTH · INFRASTRUCTURE</span></div>
+      <div class="diagram">
+        <img src="assets/capabilities/infrastructure.png" alt="Health infrastructure diagram">
+      </div>
+      <h3>Health data <span class="acc">infrastructure</span>.</h3>
+      <p>FHIR, HL7, and the connective tissue between clinics, ministries, and insurers. We build the the pipesthat will power agentic health systems.</p>
+      <div class="ex"><strong>EXAMPLE</strong> · CINDER &mdash; FHIR BROWSER · OPEN SOURCE</div>
+    </div>
+
+    <div class="cap">
+      <div class="row1"><span class="n">03</span><span>GEOSPATIAL · AI</span></div>
+      <div class="diagram">
+        <img src="assets/capabilities/geospatial.png" alt="Geospatial AI diagram">
+      </div>
+      <h3>Geospatial <span class="acc">AI</span>.</h3>
+      <p>From satellite imagery and census layers to a query a planner can run — "under-5s in Turkana by ward." Segmentation, population estimation, boundary tooling; exportable maps used in immunization campaigns.</p>
+      <div class="ex"><strong>EXAMPLE</strong> · PIXEL &mdash; POPULATION EXPLORER</div>
+    </div>
+
+    <div class="cap">
+      <div class="row1"><span class="n">04</span><span>STRATEGY · ADVISORY</span></div>
+      <div class="diagram">
+        <img src="assets/capabilities/advisory.png" alt="Strategy and advisory diagram">
+      </div>
+      <h3>Strategy &amp; <span class="acc">advisory</span>.</h3>
+      <p>Short, high-signal engagements for funders, ministries, and executive teams. Where can you apply AI for real transformation. What "AI-native" should actually mean inside your organization.</p>
+      <div class="ex"><strong>FORMAT</strong> · 90-DAY SPRINTS · BOARD BRIEFINGS · DIAGNOSTICS</div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Have a hard <span class="acc">problem</span>?</h2>
+    <div class="buttons">
+      <a href="mailto:hello@recodelabs.org" class="btn">Start a conversation <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
+      <a href="projects.html" class="btn ghost">See the projects</a>
+    </div>
+  </section>
+
+  <div class="foot-bot">
+    <span>© 2026 · RECODE LABS</span>
+    <span>BURLINGTON · VT</span>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <defs>
+    
+  </defs>
+
+  
+  <symbol id="rl-node" viewBox="0 0 24 24">
+    <circle class="s" cx="12" cy="12" r="5"></circle>
+    <circle class="acc" cx="12" cy="12" r="1.75"></circle>
+  </symbol>
+
+  
+  <symbol id="rl-network" viewBox="0 0 24 24">
+    <circle class="s" cx="4" cy="5" r="2"></circle>
+    <circle class="s" cx="20" cy="5" r="2"></circle>
+    <circle class="s" cx="12" cy="19" r="2"></circle>
+    <path class="s" d="M5.5 6.5L10.8 17.4 M18.5 6.5L13.2 17.4 M6 5h12"></path>
+  </symbol>
+
+  
+  <symbol id="rl-measure" viewBox="0 0 24 24">
+    <path class="s" d="M2 17 L22 17"></path>
+    <path class="s" d="M2 13 L2 21 M22 13 L22 21"></path>
+    <path class="s" d="M7 15 L7 19 M12 15 L12 19 M17 15 L17 19"></path>
+    <path class="s" d="M2 3 L8 9 L2 9 Z"></path>
+  </symbol>
+
+  
+  <symbol id="rl-compass" viewBox="0 0 24 24">
+    <circle class="s" cx="12" cy="12" r="9"></circle>
+    <path class="s" d="M12 3 V6 M12 18 V21 M3 12 H6 M18 12 H21"></path>
+    <path d="M12 6 L14 13 L12 18 L10 13 Z" fill="#E05939" stroke="#0E0E0C" stroke-width="1" stroke-linejoin="miter"></path>
+  </symbol>
+
+  
+  <symbol id="rl-blueprint" viewBox="0 0 24 24">
+    <rect class="s" x="3" y="3" width="18" height="18"></rect>
+    <path class="s" d="M3 8 H21 M8 3 V21"></path>
+    <path class="s" d="M12 12 H18 M12 16 H16"></path>
+    <circle class="acc" cx="5.5" cy="5.5" r="1"></circle>
+  </symbol>
+
+  
+  <symbol id="rl-signal" viewBox="0 0 24 24">
+    <circle class="acc" cx="12" cy="12" r="2"></circle>
+    <path class="s" d="M7 7 A7 7 0 0 1 17 7 M5 5 A10 10 0 0 1 19 5"></path>
+    <path class="s" d="M7 17 A7 7 0 0 0 17 17 M5 19 A10 10 0 0 0 19 19"></path>
+  </symbol>
+
+  
+  <symbol id="rl-grid" viewBox="0 0 24 24">
+    <rect class="s" x="3" y="3" width="18" height="18"></rect>
+    <path class="s" d="M9 3 V21 M15 3 V21 M3 9 H21 M3 15 H21"></path>
+  </symbol>
+
+  
+  <symbol id="rl-data" viewBox="0 0 24 24">
+    <ellipse class="s" cx="12" cy="5.5" rx="8" ry="2.5"></ellipse>
+    <path class="s" d="M4 5.5 V12 A8 2.5 0 0 0 20 12 V5.5 M4 12 V18.5 A8 2.5 0 0 0 20 18.5 V12"></path>
+  </symbol>
+
+  
+  <symbol id="rl-terminal" viewBox="0 0 24 24">
+    <rect class="s" x="2" y="4" width="20" height="16"></rect>
+    <path class="s" d="M6 9 L9 12 L6 15 M12 16 H17"></path>
+  </symbol>
+
+  
+  <symbol id="rl-model" viewBox="0 0 24 24">
+    <circle class="s" cx="4" cy="6" r="1.5"></circle>
+    <circle class="s" cx="4" cy="18" r="1.5"></circle>
+    <circle class="s" cx="12" cy="12" r="1.5"></circle>
+    <circle class="s" cx="20" cy="6" r="1.5"></circle>
+    <circle class="s" cx="20" cy="18" r="1.5"></circle>
+    <path class="s" d="M5.5 6.5 L10.5 11.5 M5.5 17.5 L10.5 12.5 M13.5 11.5 L18.5 6.5 M13.5 12.5 L18.5 17.5"></path>
+  </symbol>
+
+  
+  <symbol id="rl-pin" viewBox="0 0 24 24">
+    <path class="s" d="M12 22 L12 14"></path>
+    <circle class="s" cx="12" cy="9" r="6"></circle>
+    <circle class="acc" cx="12" cy="9" r="2"></circle>
+  </symbol>
+
+  
+  <symbol id="rl-plus" viewBox="0 0 24 24">
+    <path class="s" d="M12 3 V21 M3 12 H21"></path>
+    <circle class="s" cx="12" cy="12" r="6"></circle>
+  </symbol>
+
+  
+  <symbol id="rl-arrow" viewBox="0 0 24 24">
+    <path class="s" d="M3 12 H20"></path>
+    <path class="s" d="M14 6 L20 12 L14 18"></path>
+  </symbol>
+
+  
+  <symbol id="rl-spec" viewBox="0 0 24 24">
+    <path class="s" d="M7 3 H3 V21 H7 M17 3 H21 V21 H17"></path>
+    <path class="s" d="M9 12 H15"></path>
+  </symbol>
+
+  
+  <symbol id="rl-person" viewBox="0 0 24 24">
+    <circle class="s" cx="12" cy="7" r="3.5"></circle>
+    <path class="s" d="M4 21 C4 16 8 13 12 13 C16 13 20 16 20 21"></path>
+  </symbol>
+
+  
+  <symbol id="rl-globe" viewBox="0 0 24 24">
+    <circle class="s" cx="12" cy="12" r="9"></circle>
+    <ellipse class="s" cx="12" cy="12" rx="4" ry="9"></ellipse>
+    <path class="s" d="M3 12 H21"></path>
+  </symbol>
+
+  
+  <symbol id="rl-beaker" viewBox="0 0 24 24">
+    <path class="s" d="M9 3 H15 M10 3 V10 L5 20 H19 L14 10 V3"></path>
+    <path class="s" d="M7.5 15 H16.5"></path>
+    <circle class="acc" cx="10" cy="17" r="1"></circle>
+  </symbol>
+
+  
+  <symbol id="rl-crosshair" viewBox="0 0 24 24">
+    <circle class="s" cx="12" cy="12" r="8"></circle>
+    <circle class="s" cx="12" cy="12" r="3"></circle>
+    <path class="s" d="M12 1 V6 M12 18 V23 M1 12 H6 M18 12 H23"></path>
+  </symbol>
+
+  
+  <symbol id="rl-doc" viewBox="0 0 24 24">
+    <path class="s" d="M6 3 H15 L20 8 V21 H6 Z"></path>
+    <path class="s" d="M15 3 V8 H20"></path>
+    <path class="s" d="M9 13 H17 M9 17 H14"></path>
+  </symbol>
+
+  
+  <symbol id="rl-outbound" viewBox="0 0 24 24">
+    <path class="s" d="M7 17 L17 7"></path>
+    <path class="s" d="M9 7 H17 V15"></path>
+  </symbol>
+
+  
+  <symbol id="rl-check" viewBox="0 0 24 24">
+    <path class="s" d="M4 12 L10 18 L20 6"></path>
+  </symbol>
+
+  
+  <symbol id="rl-minus" viewBox="0 0 24 24">
+    <path class="s" d="M4 12 H20"></path>
+  </symbol>
+
+  
+  <symbol id="rl-close" viewBox="0 0 24 24">
+    <path class="s" d="M5 5 L19 19 M19 5 L5 19"></path>
+  </symbol>
+
+  
+  <symbol id="rl-chevron" viewBox="0 0 24 24">
+    <path class="s" d="M5 9 L12 16 L19 9"></path>
+  </symbol>
+</svg>

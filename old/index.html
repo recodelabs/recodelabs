@@ -1,0 +1,110 @@
+<!-- ABOUTME: Main entry point for Recode Labs that randomly loads visual effects -->
+<!-- ABOUTME: Handles effect selection and remix functionality via iframe -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Recode Labs</title>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            iframe {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
+            .contact-email {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                z-index: 100;
+                font-family: 'IBM Plex Mono', monospace;
+                font-size: 16px;
+                text-decoration: none;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <iframe id="effectFrame"></iframe>
+        <a href="mailto:info@recodelabs.org" class="contact-email">info@recodelabs.org</a>
+        <script>
+            const effects = [
+                "effects/ribbon.html",
+                "effects/rotating-squares.html",
+                "effects/birds.html",
+            ];
+
+            let currentEffect = null;
+
+            function getRandomEffect(excludeCurrent) {
+                if (effects.length === 1) {
+                    return effects[0];
+                }
+
+                let available = effects;
+                if (excludeCurrent) {
+                    available = effects.filter((e) => e !== currentEffect);
+                }
+
+                const index = Math.floor(Math.random() * available.length);
+                return available[index];
+            }
+
+            function loadEffect(effectPath) {
+                currentEffect = effectPath;
+                document.getElementById("effectFrame").src = effectPath;
+
+                // Update email color to match logo
+                const emailLink = document.querySelector(".contact-email");
+                if (effectPath === "effects/rotating-squares.html") {
+                    emailLink.style.color = "#e05939";
+                } else {
+                    emailLink.style.color = "white";
+                }
+
+                // Store in sessionStorage so we know what to exclude on remix
+                sessionStorage.setItem("currentEffect", effectPath);
+            }
+
+            function remix() {
+                const newEffect = getRandomEffect(true);
+                loadEffect(newEffect);
+            }
+
+            // Listen for remix messages from child frames
+            window.addEventListener("message", function (event) {
+                if (event.data === "remix") {
+                    remix();
+                }
+            });
+
+            // On load, pick a random effect
+            const stored = sessionStorage.getItem("currentEffect");
+            if (stored && effects.includes(stored)) {
+                // If coming back to page, pick a different one
+                currentEffect = stored;
+                remix();
+            } else {
+                loadEffect(getRandomEffect(false));
+            }
+        </script>
+    </body>
+</html>

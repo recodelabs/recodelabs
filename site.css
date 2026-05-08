@@ -1,0 +1,41 @@
+/* ==========================================================================
+   RECODE LABS — SHARED SITE STYLES
+   Common chrome (nav, buttons, footer, blueprint primitives) for all pages.
+   Page-specific layout stays inline in each .html file.
+   ========================================================================== */
+
+body { margin: 0; background: var(--bone-50); }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+h1, h2, h3, h4, p { margin: 0; }
+a { color: inherit; }
+
+/* NAV */
+.nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid var(--ink-900); position: relative; z-index: 2; background: var(--bone-50); }
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand .meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); border-left: 1px solid var(--color-line-hairline); padding-left: 14px; line-height: 1.3; }
+.navlinks { display: flex; gap: 28px; align-items: center; }
+.navlinks a:not(.btn) { text-decoration: none; color: var(--ink-900); font-size: 14px; font-weight: 500; letter-spacing: -0.01em; position: relative; }
+.navlinks a.active:not(.btn)::before { content: ''; position: absolute; left: -10px; top: 8px; width: 4px; height: 4px; background: var(--signal-500); }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; font-family: var(--font-sans); font-size: 13px; font-weight: 500; border: 1px solid var(--ink-900); background: var(--ink-900); color: var(--bone-50); cursor: pointer; border-radius: 2px; text-decoration: none; }
+.btn:hover { color: var(--bone-50); }
+.btn.ghost { background: transparent; color: var(--ink-900); }
+.btn.ghost:hover { color: var(--ink-900); }
+.btn svg { stroke: currentColor; fill: none; }
+
+/* Footer rule */
+.foot-bot { display: flex; justify-content: space-between; padding: 20px 0; border-top: 1px solid var(--ink-900); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); }
+.foot-bot .r { color: var(--signal-500); }
+
+/* Blueprint diagram primitives */
+.bp-stroke { stroke: var(--ink-900); stroke-width: 1.25; fill: none; }
+.bp-thin { stroke: var(--ink-900); stroke-width: 0.75; fill: none; stroke-dasharray: 2 3; }
+.bp-signal { stroke: var(--signal-500); stroke-width: 1.5; fill: none; }
+.bp-signal-fill { fill: var(--signal-500); }
+.bp-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; fill: var(--color-text-secondary); }
+.bp-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: var(--ink-900); }
+.bp-title { font-family: var(--font-display); font-size: 13px; fill: var(--ink-900); }
+
+/* Plates (mono spec stack at top-right of hero/page-head) */
+.plates { position: absolute; top: 72px; right: 80px; display: flex; flex-direction: column; gap: 8px; align-items: flex-end; font-family: var(--font-mono); font-size: 10px; line-height: 1; letter-spacing: 0.14em; color: var(--color-text-secondary); text-transform: uppercase; white-space: nowrap; }

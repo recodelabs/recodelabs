@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recode Labs — Projects</title>
+<meta name="description" content="Four deployed AI systems by Recode Labs: Elly, TrueCover, Cinder, and Pixel.">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* PAGE HEADER */
+  .page-head { padding: 72px 0 48px; border-bottom: 1px solid var(--ink-900); position: relative; }
+  .page-head .eyebrow { display: flex; gap: 14px; align-items: center; margin-bottom: 24px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .page-head .eyebrow .dot { width: 6px; height: 6px; background: var(--signal-500); }
+  .page-head h1 { font-family: var(--font-display); font-weight: 500; font-size: 96px; line-height: 0.98; letter-spacing: -0.04em; max-width: 1100px; }
+  .page-head h1 .acc { color: var(--signal-500); }
+  .page-head .sub { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; margin-top: 40px; align-items: end; }
+  .page-head .lede { font-size: 19px; line-height: 1.45; max-width: 58ch; color: var(--color-text-secondary); letter-spacing: -0.005em; }
+  .page-head .lede strong { color: var(--ink-900); font-weight: 500; }
+
+  /* SECTION */
+  .section-h { display: grid; grid-template-columns: 1fr auto; gap: 12px 40px; align-items: end; padding: 56px 0 24px; }
+  .section-h .lbl { grid-column: 1 / -1; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); padding-bottom: 12px; border-bottom: 1px solid var(--color-line-hairline); }
+  .section-h h2 { font-family: var(--font-display); font-weight: 500; font-size: 56px; line-height: 1; letter-spacing: -0.035em; }
+  .section-h h2 .acc { color: var(--signal-500); }
+  .section-h .rt { justify-self: end; text-align: right; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); }
+
+  /* CARDS */
+  .card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--ink-900);
+    margin-top: 24px;
+    background: var(--bone-50);
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    min-height: 520px;
+  }
+  .card .body { padding: 32px 36px; display: flex; flex-direction: column; border-right: 1px solid var(--ink-900); }
+  .card.reverse .body { order: 2; border-right: none; border-left: 1px solid var(--ink-900); }
+  .card .idrow { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); padding-bottom: 18px; border-bottom: 1px solid var(--color-line-hairline); }
+  .card .idrow .n { color: var(--signal-500); font-weight: 500; }
+  .card h2 { font-family: var(--font-display); font-weight: 500; font-size: 64px; line-height: 0.95; letter-spacing: -0.035em; margin-top: 28px; }
+  .card h2 .acc { color: var(--signal-500); }
+  .card .tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-text-secondary); margin-top: 16px; }
+  .card .lede { font-size: 16px; line-height: 1.55; margin-top: 18px; max-width: 48ch; color: var(--color-text); }
+  .card .lede strong { font-weight: 500; }
+  .card .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--color-line-hairline); }
+  .card .stat .k { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-caption); }
+  .card .stat .v { font-family: var(--font-display); font-size: 28px; font-weight: 500; letter-spacing: -0.02em; margin-top: 6px; line-height: 1; }
+  .card .stat .v.signal { color: var(--signal-500); }
+  .card .foot { margin-top: auto; padding-top: 28px; display: flex; gap: 10px; }
+
+  .card .visual { position: relative; background: var(--bone-50); overflow: hidden;
+    background-image:
+      linear-gradient(var(--color-line-ghost) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-line-ghost) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .card .vmeta { position: absolute; top: 14px; left: 14px; right: 14px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-caption); }
+  .card .vmeta .k { color: var(--ink-900); }
+  .card .vmeta .v { color: var(--signal-500); }
+  .card .visual svg { position: absolute; inset: 44px 32px 44px 32px; width: calc(100% - 64px); height: calc(100% - 88px); }
+  .card .visual img.shot { position: absolute; inset: 44px 24px 24px 24px; width: calc(100% - 48px); height: calc(100% - 68px); object-fit: contain; border: 1px solid var(--ink-900); background: var(--bone-50); }
+  .card .vticks { position: absolute; inset: 0; pointer-events: none; }
+  .card .vticks::before, .card .vticks::after { content: ''; position: absolute; width: 10px; height: 10px; border: 0 solid var(--ink-900); }
+  .card .vticks::before { top: 8px; left: 8px; border-top-width: 1px; border-left-width: 1px; }
+  .card .vticks::after { bottom: 8px; right: 8px; border-bottom-width: 1px; border-right-width: 1px; }
+
+  /* CTA */
+  .cta { padding: 72px 0 80px; border-top: 1px solid var(--ink-900); display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; margin-top: 72px; }
+  .cta h2 { font-family: var(--font-display); font-weight: 500; font-size: 72px; line-height: 0.98; letter-spacing: -0.04em; max-width: 16ch; }
+  .cta h2 .acc { color: var(--signal-500); }
+  .cta .buttons { display: flex; gap: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="brand">
+      <a href="index.html" style="display:inline-block; line-height:0;">
+        <img src="assets/wordmark.svg" alt="Recode Labs" style="height:28px; display:block;">
+      </a>
+      <div class="meta">APPLIED · AI<br>EST · 2025</div>
+    </div>
+    <div class="navlinks">
+      <a href="index.html">Work</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="about.html">About</a>
+      <a class="btn" href="mailto:hello@recodelabs.org">Work with us <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
+    </div>
+  </nav>
+
+  <!-- ============== ELLY ============== -->
+  <section class="section-h" id="elly">
+    <div class="lbl">FIG. 01 · ELLY · AMBIENT INSIGHT</div>
+    <h2>Elly</h2>
+    <div class="rt">PROJECT · 01 · LIVE</div>
+  </section>
+
+  <div class="card">
+    <div class="body">
+      <div class="idrow"><span class="n">PROJECT · 01 / ELLY</span><span>AMBIENT · CLINICS &amp; CLASSROOMS</span></div>
+      <h2>Elly <span class="acc">listens</span>,<br>so programs<br>can learn.</h2>
+      <div class="tag">AMBIENT · TRANSCRIPTION · INSIGHT</div>
+      <p class="lede">Elly is an ambient listener for clinics and classrooms. It records the room, transcribes the audio, then uses AI to extract the answers programs actually want — did the clinic open on time, were protocols followed, how many visits were seen, was the curriculum covered, how often did students ask questions. <strong>Insight for supervisors, coaching for staff, no added burden.</strong> Cheap to run, easy to deploy.</p>
+      <div class="stats">
+        <div class="stat"><div class="k">Settings</div><div class="v">Clinics &amp; classrooms</div></div>
+        <div class="stat"><div class="k">New forms</div><div class="v signal">Zero</div></div>
+        <div class="stat"><div class="k">Cost per session</div><div class="v">Low</div></div>
+      </div>
+    </div>
+    <div class="visual">
+      <span class="vticks"></span>
+      <div class="vmeta"><span class="k">FIG. 01 · ELLY / <span class="v">LISTEN · TRANSCRIBE · EXTRACT</span></span><span>AMBIENT · 2026</span></div>
+      <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+        <text x="210" y="14" text-anchor="middle" class="bp-label">AMBIENT AUDIO · TRANSCRIPT · STRUCTURED INSIGHT</text>
+
+        <!-- Stage A: Room with mic -->
+        <g transform="translate(14 32)">
+          <rect x="0" y="0" width="118" height="120" class="bp-stroke" fill="var(--bone-50)"/>
+          <text x="59" y="14" text-anchor="middle" class="bp-label">CLINIC · CLASSROOM</text>
+          <line x1="6" y1="20" x2="112" y2="20" class="bp-thin"/>
+          <!-- Two figures -->
+          <g transform="translate(34 42)">
+            <circle cx="0" cy="6" r="6" class="bp-stroke" fill="var(--bone-50)"/>
+            <path d="M-9 36 L-9 20 Q0 16 9 20 L9 36" class="bp-stroke"/>
+          </g>
+          <g transform="translate(84 42)">
+            <circle cx="0" cy="6" r="6" class="bp-stroke" fill="var(--bone-50)"/>
+            <path d="M-9 36 L-9 20 Q0 16 9 20 L9 36" class="bp-stroke"/>
+          </g>
+          <!-- Mic + sound waves -->
+          <g transform="translate(59 100)">
+            <circle cx="0" cy="0" r="4" fill="var(--signal-500)"/>
+            <circle cx="0" cy="0" r="9" fill="none" stroke="var(--signal-500)" stroke-width="1" opacity="0.6"/>
+            <circle cx="0" cy="0" r="15" fill="none" stroke="var(--signal-500)" stroke-width="1" opacity="0.3"/>
+          </g>
+          <text x="59" y="138" text-anchor="middle" class="bp-label">A · LISTEN</text>
+        </g>
+
+        <!-- Arrow A→B -->
+        <line x1="142" y1="92" x2="160" y2="92" class="bp-thin"/>
+        <path d="M156 88 L162 92 L156 96" class="bp-stroke"/>
+
+        <!-- Stage B: Transcript -->
+        <g transform="translate(168 32)">
+          <rect x="0" y="0" width="118" height="120" class="bp-stroke" fill="var(--bone-50)"/>
+          <text x="59" y="14" text-anchor="middle" class="bp-label">TRANSCRIPT</text>
+          <line x1="6" y1="20" x2="112" y2="20" class="bp-thin"/>
+          <text x="6" y="34" class="bp-label" style="font-size:8px">DR · 09:14</text>
+          <line x1="6" y1="40" x2="106" y2="40" class="bp-thin"/>
+          <line x1="6" y1="46" x2="92" y2="46" class="bp-thin"/>
+          <text x="6" y="60" class="bp-label" style="font-size:8px">PT · 09:14</text>
+          <line x1="6" y1="66" x2="100" y2="66" class="bp-thin"/>
+          <line x1="6" y1="72" x2="84" y2="72" class="bp-thin"/>
+          <text x="6" y="86" class="bp-label" style="font-size:8px">DR · 09:15</text>
+          <line x1="6" y1="92" x2="106" y2="92" class="bp-thin"/>
+          <line x1="6" y1="98" x2="80" y2="98" class="bp-thin"/>
+          <line x1="6" y1="104" x2="96" y2="104" class="bp-thin"/>
+          <text x="59" y="138" text-anchor="middle" class="bp-label">B · TRANSCRIBE</text>
+        </g>
+
+        <!-- Arrow B→C -->
+        <line x1="296" y1="92" x2="314" y2="92" class="bp-signal"/>
+        <path d="M310 88 L316 92 L310 96" class="bp-signal"/>
+
+        <!-- Stage C: Insights card -->
+        <g transform="translate(322 32)">
+          <rect x="0" y="0" width="84" height="120" class="bp-signal" fill="var(--signal-50)"/>
+          <text x="42" y="14" text-anchor="middle" class="bp-label" style="fill: var(--signal-700)">INSIGHTS</text>
+          <line x1="6" y1="20" x2="78" y2="20" stroke="var(--signal-500)" stroke-dasharray="2 2"/>
+          <text x="6" y="34" class="bp-label" style="font-size:8px; fill: var(--signal-700)">VISITS</text>
+          <text x="78" y="34" text-anchor="end" class="bp-num">28</text>
+          <text x="6" y="52" class="bp-label" style="font-size:8px; fill: var(--signal-700)">PROTOCOL</text>
+          <text x="78" y="52" text-anchor="end" class="bp-num">72%</text>
+          <text x="6" y="70" class="bp-label" style="font-size:8px; fill: var(--signal-700)">STOCK-OUT</text>
+          <text x="78" y="70" text-anchor="end" class="bp-num">2</text>
+          <text x="6" y="88" class="bp-label" style="font-size:8px; fill: var(--signal-700)">QUESTIONS</text>
+          <text x="78" y="88" text-anchor="end" class="bp-num">14</text>
+          <text x="6" y="106" class="bp-label" style="font-size:8px; fill: var(--signal-700)">AVG. VISIT</text>
+          <text x="78" y="106" text-anchor="end" class="bp-num">5m</text>
+          <text x="42" y="138" text-anchor="middle" class="bp-label" style="fill: var(--signal-500)">C · EXTRACT</text>
+        </g>
+
+        <!-- Bottom: zero-burden callout -->
+        <g transform="translate(14 192)">
+          <rect x="0" y="0" width="392" height="48" fill="var(--bone-50)" stroke="#0E0E0C" stroke-width="0.5" stroke-dasharray="3 3"/>
+          <text x="196" y="18" text-anchor="middle" class="bp-label">NO NEW FORMS · NO ADDED BURDEN</text>
+          <text x="196" y="36" text-anchor="middle" class="bp-num" style="fill: var(--color-text-secondary); font-size: 10px">Insight for supervisors. Coaching for staff.</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ============== TRUECOVER ============== -->
+  <section class="section-h" id="truecover">
+    <div class="lbl">FIG. 02 · TRUECOVER · IMMUNIZATION COVERAGE</div>
+    <h2>TrueCover</h2>
+    <div class="rt">PROJECT · 02 · PILOT</div>
+  </section>
+
+  <div class="card reverse">
+    <div class="visual">
+      <span class="vticks"></span>
+      <div class="vmeta"><span class="k">FIG. 02 · TRUECOVER / <span class="v">STRUCTURES → SAMPLE → COVERAGE</span></span><span>BANGLADESH · 2026</span></div>
+      <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+        <text x="210" y="14" text-anchor="middle" class="bp-label">PREDICTED IMMUNIZATION COVERAGE · BY STRUCTURE</text>
+
+        <g transform="translate(20 28)">
+          <!-- Region boundary -->
+          <path d="M10 50 Q40 0 110 0 Q200 -2 240 30 Q300 60 290 140 Q260 200 180 210 Q80 220 30 180 Q-10 130 10 50 Z"
+                stroke="#0E0E0C" stroke-width="1" fill="#FAF8F3"/>
+          <!-- Roads -->
+          <path d="M-5 90 Q70 70 160 80 Q240 90 300 70" fill="none" stroke="#0E0E0C" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.4"/>
+          <path d="M120 -5 Q140 80 130 220" fill="none" stroke="#0E0E0C" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.4"/>
+
+          <!-- High-coverage cluster (top half) — ink -->
+          <g fill="#0E0E0C">
+            <circle cx="50" cy="40" r="1.8"/><circle cx="64" cy="48" r="1.8"/>
+            <circle cx="78" cy="36" r="1.8"/><circle cx="92" cy="50" r="1.8"/>
+            <circle cx="106" cy="38" r="1.8"/><circle cx="124" cy="44" r="1.8"/>
+            <circle cx="142" cy="36" r="1.8"/><circle cx="160" cy="48" r="1.8"/>
+            <circle cx="178" cy="40" r="1.8"/><circle cx="60" cy="64" r="1.8"/>
+            <circle cx="84" cy="68" r="1.8"/><circle cx="106" cy="62" r="1.8"/>
+            <circle cx="130" cy="68" r="1.8"/><circle cx="156" cy="60" r="1.8"/>
+            <circle cx="46" cy="78" r="1.8"/><circle cx="74" cy="82" r="1.8"/>
+            <circle cx="100" cy="80" r="1.8"/><circle cx="124" cy="84" r="1.8"/>
+            <circle cx="146" cy="80" r="1.8"/>
+          </g>
+
+          <!-- Mid-coverage cluster (middle) — signal outline -->
+          <g fill="none" stroke="#E05939" stroke-width="1">
+            <circle cx="60" cy="120" r="2"/><circle cx="80" cy="118" r="2"/>
+            <circle cx="100" cy="124" r="2"/><circle cx="118" cy="120" r="2"/>
+            <circle cx="138" cy="128" r="2"/><circle cx="50" cy="140" r="2"/>
+            <circle cx="74" cy="146" r="2"/><circle cx="98" cy="148" r="2"/>
+            <circle cx="120" cy="148" r="2"/><circle cx="56" cy="166" r="2"/>
+            <circle cx="80" cy="172" r="2"/><circle cx="106" cy="178" r="2"/>
+          </g>
+
+          <!-- Low-coverage cluster (bottom-right) — signal filled -->
+          <g fill="#E05939">
+            <circle cx="180" cy="120" r="2.2"/><circle cx="202" cy="116" r="2.2"/>
+            <circle cx="220" cy="130" r="2.2"/><circle cx="240" cy="120" r="2.2"/>
+            <circle cx="186" cy="142" r="2.2"/><circle cx="206" cy="146" r="2.2"/>
+            <circle cx="226" cy="152" r="2.2"/><circle cx="246" cy="142" r="2.2"/>
+            <circle cx="180" cy="166" r="2.2"/><circle cx="200" cy="172" r="2.2"/>
+            <circle cx="224" cy="178" r="2.2"/><circle cx="160" cy="180" r="2.2"/>
+            <circle cx="244" cy="166" r="2.2"/>
+          </g>
+
+          <!-- Sampled (visited by surveillance teams) — small dark ring -->
+          <g fill="none" stroke="#0E0E0C" stroke-width="1">
+            <circle cx="78" cy="36" r="5"/>
+            <circle cx="160" cy="48" r="5"/>
+            <circle cx="106" cy="62" r="5"/>
+            <circle cx="100" cy="124" r="5"/>
+            <circle cx="220" cy="130" r="5"/>
+            <circle cx="200" cy="172" r="5"/>
+          </g>
+
+          <!-- Gap callout -->
+          <line x1="220" y1="130" x2="282" y2="86" stroke="#E05939" stroke-width="0.8" stroke-dasharray="2 2"/>
+          <rect x="270" y="60" width="106" height="40" fill="#FFF1EC" stroke="#E05939" stroke-width="1"/>
+          <text x="323" y="76" text-anchor="middle" class="bp-label" style="fill: #9E2618">COVERAGE GAP</text>
+          <text x="323" y="92" text-anchor="middle" class="bp-num" style="fill: #9E2618; font-size: 11px">38% predicted</text>
+        </g>
+
+        <!-- Legend -->
+        <g transform="translate(20 244)">
+          <circle cx="4" cy="4" r="2" fill="#0E0E0C"/>
+          <text x="14" y="7" class="bp-label">HIGH</text>
+          <circle cx="74" cy="4" r="2" fill="none" stroke="#E05939"/>
+          <text x="84" y="7" class="bp-label">MID</text>
+          <circle cx="138" cy="4" r="2" fill="#E05939"/>
+          <text x="148" y="7" class="bp-label">LOW · GAP</text>
+          <circle cx="234" cy="4" r="4" fill="none" stroke="#0E0E0C"/>
+          <text x="244" y="7" class="bp-label">VISITED</text>
+        </g>
+      </svg>
+    </div>
+    <div class="body">
+      <div class="idrow"><span class="n">PROJECT · 02 / TRUECOVER</span><span>GEOSPATIAL · IMMUNIZATION</span></div>
+      <h2>TrueCover finds the kids programs <span class="acc">miss</span>.</h2>
+      <div class="tag">SATELLITE · ADAPTIVE SAMPLING · FHIR</div>
+      <p class="lede">A geospatial coverage estimator built with <strong>UNICEF and Bangladesh's MIS-DGHS</strong>. Combines high-resolution satellite imagery, an adaptive sampling algorithm, and offline mobile data collection to estimate immunization coverage at the household level — even in hard-to-reach areas where traditional surveys fall short. Outputs a <strong>predictive coverage map</strong> for every structure, with uncertainty scores so health teams know where to look next.</p>
+      <div class="stats">
+        <div class="stat"><div class="k">Partner</div><div class="v signal">UNICEF</div></div>
+        <div class="stat"><div class="k">Country</div><div class="v">Bangladesh</div></div>
+        <div class="stat"><div class="k">Method</div><div class="v">Geospatial</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== CINDER ============== -->
+  <section class="section-h" id="cinder">
+    <div class="lbl">FIG. 03 · CINDER · FHIR BROWSER</div>
+    <h2>Cinder</h2>
+    <div class="rt">PROJECT · 03 · OPEN SOURCE</div>
+  </section>
+
+  <div class="card">
+    <div class="body">
+      <div class="idrow"><span class="n">PROJECT · 03 / CINDER</span><span>FHIR · OPEN SOURCE</span></div>
+      <h2>The missing FHIR <span class="acc">browser</span>.</h2>
+      <div class="tag">BROWSE · EDIT · AUTHOR · DEDUPE</div>
+      <p class="lede">Browse health data in an accessible way. View, edit, and add resources; create, author, and fill in questionnaires; dedupe records; and run the admin tasks the spec doesn't make easy. Connects to <strong>Google Healthcare API</strong> and any FHIR server. <strong>The FHIR browser you didn't realize you needed</strong> — open source.</p>
+      <div class="stats">
+        <div class="stat"><div class="k">Connector</div><div class="v signal">GHC API</div></div>
+        <div class="stat"><div class="k">License</div><div class="v">Open source</div></div>
+        <div class="stat"><div class="k">Status</div><div class="v">Live</div></div>
+      </div>
+      <div class="foot">
+        <a href="https://cinder.recodelabs.org" target="_blank" rel="noopener" class="btn">Launch Cinder <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
+        <a href="https://github.com/recodelabs/cinder" target="_blank" rel="noopener" class="btn ghost">GitHub</a>
+      </div>
+    </div>
+    <div class="visual">
+      <span class="vticks"></span>
+      <div class="vmeta"><span class="k">FIG. 03 · CINDER / <span class="v">RESOURCE GRAPH</span></span><span>PLACEHOLDER · DIAG.</span></div>
+      <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+        <text x="210" y="16" text-anchor="middle" class="bp-label">PATIENT · ENCOUNTER · OBSERVATION</text>
+        <g transform="translate(60 80)">
+          <circle cx="0" cy="0" r="26" class="bp-signal" fill="var(--signal-50)"/>
+          <text x="0" y="4" text-anchor="middle" class="bp-label" style="fill: var(--signal-700)">Patient</text>
+          <text x="0" y="44" text-anchor="middle" class="bp-num">id · 4A7</text>
+        </g>
+        <g transform="translate(210 60)">
+          <rect x="-34" y="-16" width="68" height="32" class="bp-stroke" fill="var(--bone-50)"/>
+          <text x="0" y="4" text-anchor="middle" class="bp-label">Encounter</text>
+          <text x="0" y="32" text-anchor="middle" class="bp-num">id · 91C</text>
+        </g>
+        <g transform="translate(210 150)">
+          <rect x="-34" y="-16" width="68" height="32" class="bp-stroke" fill="var(--bone-50)"/>
+          <text x="0" y="4" text-anchor="middle" class="bp-label">Condition</text>
+          <text x="0" y="32" text-anchor="middle" class="bp-num">J18.9</text>
+        </g>
+        <g transform="translate(340 50)">
+          <rect x="-30" y="-14" width="60" height="28" class="bp-stroke" fill="var(--bone-50)"/>
+          <text x="0" y="4" text-anchor="middle" class="bp-label">Obs · T</text>
+        </g>
+        <g transform="translate(340 110)">
+          <rect x="-30" y="-14" width="60" height="28" class="bp-stroke" fill="var(--bone-50)"/>
+          <text x="0" y="4" text-anchor="middle" class="bp-label">Obs · HR</text>
+        </g>
+        <g transform="translate(340 170)">
+          <rect x="-30" y="-14" width="60" height="28" class="bp-stroke" fill="var(--bone-50)"/>
+          <text x="0" y="4" text-anchor="middle" class="bp-label">Obs · SpO₂</text>
+        </g>
+        <line x1="86" y1="80" x2="174" y2="62" class="bp-thin"/>
+        <line x1="86" y1="88" x2="174" y2="148" class="bp-thin"/>
+        <line x1="244" y1="50" x2="308" y2="46" class="bp-thin"/>
+        <line x1="244" y1="60" x2="308" y2="106" class="bp-thin"/>
+        <line x1="244" y1="70" x2="308" y2="166" class="bp-thin"/>
+        <g transform="translate(20 220)">
+          <rect x="0" y="0" width="10" height="10" class="bp-signal" fill="var(--signal-50)"/>
+          <text x="16" y="9" class="bp-label">FOCUS</text>
+          <rect x="80" y="0" width="10" height="10" class="bp-stroke" fill="var(--bone-50)"/>
+          <text x="96" y="9" class="bp-label">REFERENCED</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ============== PIXEL ============== -->
+  <section class="section-h" id="pixel">
+    <div class="lbl">FIG. 04 · PIXEL · POPULATION EXPLORER</div>
+    <h2>Pixel</h2>
+    <div class="rt">PROJECT · 04 · LIVE · geopixel.io</div>
+  </section>
+
+  <div class="card reverse" data-href="https://www.geopixel.io" role="link" tabindex="0" style="cursor:pointer;">
+    <div class="visual">
+      <span class="vticks"></span>
+      <div class="vmeta"><span class="k">FIG. 04 · PIXEL / <span class="v">POPULATION + TRAVEL TIME</span></span><span>geopixel.io · 2026</span></div>
+      <img class="shot" src="assets/projects/pixel.png" alt="Pixel UI showing a WorldPop population layer with travel-time isochrones around Meru, Kenya">
+    </div>
+    <div class="body">
+      <div class="idrow"><span class="n">PROJECT · 04 / PIXEL</span><span>POPULATION · GEOSPATIAL</span></div>
+      <h2>Pixel shows where <span class="acc">people live</span>.</h2>
+      <div class="tag">POPULATION · WORLDPOP · TRAVEL TIME</div>
+      <p class="lede">Pixel is a <strong>population and geospatial data explorer</strong> built to answer the question every planner starts with: <strong>where do people actually live?</strong> The initial focus is making the <strong>WorldPop 2</strong> project — a 100m² resolution population map covering 242 countries from 2025–2030 — usable in a browser. Extract populations from drawn or uploaded shapes, or by travel time. Built to be expanded with other datasets over time.</p>
+      <div class="stats">
+        <div class="stat"><div class="k">Dataset</div><div class="v signal">WorldPop 2</div></div>
+        <div class="stat"><div class="k">Countries</div><div class="v">242</div></div>
+        <div class="stat"><div class="k">Years</div><div class="v">2025—2030</div></div>
+      </div>
+      <div class="foot">
+        <a href="https://www.geopixel.io" target="_blank" rel="noopener" class="btn">Visit geopixel.io <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Want us to build<br>the <span class="acc">next one</span>?</h2>
+    <div class="buttons">
+      <a href="mailto:hello@recodelabs.org" class="btn">Start a conversation <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
+      <a href="about.html" class="btn ghost">Meet the team</a>
+    </div>
+  </section>
+
+  <div class="foot-bot">
+    <span>© 2026 · RECODE LABS</span>
+    <span>BURLINGTON · VT</span>
+  </div>
+
+</div>
+<script>
+document.querySelectorAll('.card[data-href]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (e.target.closest('a')) return;
+    window.open(el.dataset.href, '_blank', 'noopener');
+  });
+});
+</script>
+</body>
+</html>

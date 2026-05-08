@@ -1,0 +1,204 @@
+/* ==========================================================================
+   RECODE LABS — DESIGN TOKENS
+   Applied AI lab for global development.
+   Aesthetic: technical blueprint — grids, measurements, drafting marks.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@300;400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* --- COLOR -------------------------------------------------------------- */
+
+  /* Paper & ink — the two-color core */
+  --bone-50:  #FAF8F3;   /* page */
+  --bone-100: #F4F1E9;   /* surface */
+  --bone-200: #E9E4D6;   /* hairline tint */
+  --bone-300: #D6CFBD;   /* muted line */
+
+  --ink-900: #0E0E0C;   /* text, ink-black */
+  --ink-800: #1C1C19;
+  --ink-700: #2A2A26;
+  --ink-600: #45453F;   /* secondary text */
+  --ink-500: #6B6B63;   /* tertiary text */
+  --ink-400: #8F8F86;   /* captions */
+  --ink-300: #B4B4AB;   /* disabled */
+  --ink-200: #D6D6CF;   /* dividers on dark */
+
+  /* Signal orange — the single accent, used sparingly */
+  --signal-50:  #FFF1EC;
+  --signal-100: #FFDDD0;
+  --signal-300: #FFA98A;
+  --signal-500: #E05939;  /* brand accent */
+  --signal-600: #C93424;
+  --signal-700: #9E2618;
+
+  /* Functional (desaturated, blueprint-friendly) */
+  --ok:    #3F6B4A;
+  --warn:  #A87A1F;
+  --error: #B3382A;
+
+  /* Semantic */
+  --color-bg:              var(--bone-50);
+  --color-surface:         var(--bone-100);
+  --color-surface-sunk:    var(--bone-200);
+  --color-text:            var(--ink-900);
+  --color-text-secondary:  var(--ink-600);
+  --color-text-muted:      var(--ink-500);
+  --color-text-caption:    var(--ink-400);
+  --color-line:            var(--ink-900);       /* primary drafting line */
+  --color-line-hairline:   rgba(14,14,12,0.18);  /* grid / construction */
+  --color-line-ghost:      rgba(14,14,12,0.08);  /* sub-grid */
+  --color-accent:          var(--signal-500);
+  --color-accent-ink:      var(--signal-700);
+
+  /* --- TYPE --------------------------------------------------------------- */
+
+  --font-display: 'Source Serif 4', 'Times New Roman', Times, serif;
+  --font-serif:   'Source Serif 4', 'Times New Roman', Times, serif;
+  --font-sans:    'Manrope', ui-sans-serif, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Type scale — editorial + technical. Line heights optimized for density. */
+  --fs-caption:  11px;   /* drafting label, all-caps */
+  --fs-micro:    12px;
+  --fs-xs:       13px;
+  --fs-sm:       14px;
+  --fs-base:     16px;
+  --fs-md:       18px;
+  --fs-lg:       22px;
+  --fs-xl:       28px;
+  --fs-2xl:      40px;
+  --fs-3xl:      56px;
+  --fs-4xl:      80px;
+  --fs-5xl:      120px;
+
+  --lh-tight:    1.04;
+  --lh-snug:     1.18;
+  --lh-normal:   1.45;
+  --lh-loose:    1.7;
+
+  --tr-wide:     0.14em;  /* all-caps labels */
+  --tr-mid:      0.04em;
+  --tr-tight:    -0.015em;
+  --tr-display:  -0.02em; /* Serif wants less aggressive tracking than Jakarta */
+
+  /* --- GRID & SPACING ---------------------------------------------------- */
+
+  --grid-base: 8px;
+  --s-0: 0;
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+  --s-11: 192px;
+
+  --container: 1280px;
+  --gutter: 24px;
+
+  /* --- LINES & RADII ----------------------------------------------------- */
+
+  --stroke-hair: 0.5px;
+  --stroke-fine: 1px;
+  --stroke-bold: 2px;
+
+  --r-none: 0;
+  --r-xs: 1px;
+  --r-sm: 2px;          /* all 'rounded' surfaces cap at 2px — blueprint precision */
+  --r-pill: 999px;      /* only for tags/pills */
+
+  /* --- SHADOWS (flat system; drop shadows are rare) ---------------------- */
+
+  --shadow-none: none;
+  --shadow-hair: 0 0 0 1px var(--color-line-hairline);
+  --shadow-ink:  0 0 0 1px var(--color-line);
+  --shadow-lift: 0 1px 0 var(--color-line);       /* structural, not soft */
+  --shadow-page: 0 24px 48px -24px rgba(14,14,12,0.18);
+
+  /* --- MOTION ----------------------------------------------------------- */
+
+  --ease-draft: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast:   120ms;
+  --dur-base:   220ms;
+  --dur-slow:   420ms;
+}
+
+/* --- Base element defaults ------------------------------------------------ */
+
+html, body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Reusable primitives ------------------------------------------------------ */
+
+.rl-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  font-weight: 500;
+  letter-spacing: var(--tr-wide);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.rl-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "ss01", "ss02";
+}
+
+.rl-serif {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tr-display);
+}
+
+.rl-editorial {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: var(--tr-display);
+}
+
+.rl-rule {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+  margin: 0;
+}
+
+.rl-hairline {
+  border: 0;
+  border-top: 1px solid var(--color-line-hairline);
+  margin: 0;
+}
+
+/* Blueprint grid background — reusable on any block */
+.rl-grid-bg {
+  background-image:
+    linear-gradient(to right, var(--color-line-ghost) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line-ghost) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.rl-grid-bg--fine {
+  background-image:
+    linear-gradient(to right, var(--color-line-ghost) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line-ghost) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* Corner tick marks used throughout — apply with .rl-ticks wrapper */
+.rl-ticks { position: relative; }
+.rl-ticks::before,
+.rl-ticks::after,
+.rl-ticks > .rl-tick-tl,
+.rl-ticks > .rl-tick-tr,
+.rl-ticks > .rl-tick-bl,
+.rl-ticks > .rl-tick-br { display: none; }
