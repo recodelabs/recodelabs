@@ -120,6 +120,26 @@
   .cta-block .buttons { display: flex; gap: 12px; }
   .cta-block .buttons .btn { background: var(--signal-500); border-color: var(--signal-500); color: #fff; padding: 14px 20px; font-size: 14px; }
   .cta-block .buttons .btn.ghost { background: transparent; color: var(--bone-50); border-color: var(--bone-50); }
+  .contact-form { width: min(420px, 100%); display: grid; gap: 12px; }
+  .contact-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .contact-form label { display: grid; gap: 6px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-300); }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(250,248,243,0.46);
+    border-radius: 2px;
+    background: rgba(250,248,243,0.08);
+    color: var(--bone-50);
+    font: 14px/1.4 var(--font-sans);
+    padding: 11px 12px;
+  }
+  .contact-form textarea { min-height: 96px; resize: vertical; }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder { color: var(--ink-300); opacity: 0.72; }
+  .contact-form input:focus,
+  .contact-form textarea:focus { outline: 2px solid var(--signal-500); outline-offset: 1px; border-color: var(--signal-500); }
+  .contact-form .btn { justify-self: start; background: var(--signal-500); border-color: var(--signal-500); color: #fff; padding: 14px 20px; font-size: 14px; }
 
   /* Footer */
   .foot-big { padding: 72px 0 32px; }
@@ -157,6 +177,7 @@
     .cta-block .wrap { grid-template-columns: 1fr; gap: 24px; align-items: start; }
     .cta-block h2 { font-size: 40px; }
     .cta-block .buttons { flex-wrap: wrap; }
+    .contact-form { width: 100%; }
     .foot-big .cols { grid-template-columns: 1fr 1fr; gap: 28px; }
   }
   @media (max-width: 640px) {
@@ -182,6 +203,8 @@
     .cta-block { padding: 40px 0; }
     .cta-block h2 { font-size: 28px; }
     .cta-block .buttons .btn { padding: 10px 14px; font-size: 12px; }
+    .contact-form .row { grid-template-columns: 1fr; }
+    .contact-form .btn { padding: 10px 14px; font-size: 12px; }
     .foot-big { padding: 48px 0 24px; }
     .foot-big .cols { grid-template-columns: 1fr; gap: 24px; }
   }
@@ -578,10 +601,23 @@
       <div class="lbl"><span class="dot"></span>§ 05 · WORK WITH US</div>
       <h2>Have a <span class="acc">problem</span> we could work on?</h2>
     </div>
-    <div class="buttons">
-      <a class="btn" href="mailto:hello@recodelabs.org">Pitch us a problem <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
-      <a class="btn ghost" href="about.html">Meet the team</a>
-    </div>
+    <form class="contact-form" action="mailto:hello@recodelabs.org" method="post" enctype="text/plain">
+      <div class="row">
+        <label>
+          Name
+          <input type="text" name="name" autocomplete="name" placeholder="Your name" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" placeholder="you@example.org" required>
+        </label>
+      </div>
+      <label>
+        Message
+        <textarea name="message" placeholder="Tell us what you are working on" required></textarea>
+      </label>
+      <button class="btn" type="submit">Send message <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></button>
+    </form>
   </div>
 </section>
 
