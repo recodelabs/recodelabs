@@ -25,12 +25,12 @@
   --ink-200: #D6D6CF;   /* dividers on dark */
 
   /* Signal orange — the single accent, used sparingly */
-  --signal-50:  #FFF1EC;
-  --signal-100: #FFDDD0;
-  --signal-300: #FFA98A;
-  --signal-500: #E05939;  /* brand accent */
-  --signal-600: #C93424;
-  --signal-700: #9E2618;
+  --signal-50:  #FFF1EA;
+  --signal-100: #FFDCC9;
+  --signal-300: #FFA57C;
+  --signal-500: #F16427;  /* brand accent, matches the logo */
+  --signal-600: #D44E16;
+  --signal-700: #A13A10;
 
   /* Functional (desaturated, blueprint-friendly) */
   --ok:    #3F6B4A;
