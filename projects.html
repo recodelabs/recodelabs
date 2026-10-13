@@ -21,11 +21,6 @@
   .page-head .lede strong { color: var(--ink-900); font-weight: 500; }
 
   /* SECTION */
-  .section-h { display: grid; grid-template-columns: 1fr auto; gap: 12px 40px; align-items: end; padding: 56px 0 24px; }
-  .section-h .lbl { grid-column: 1 / -1; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); padding-bottom: 12px; border-bottom: 1px solid var(--color-line-hairline); }
-  .section-h h2 { font-family: var(--font-display); font-weight: 500; font-size: 56px; line-height: 1; letter-spacing: -0.035em; }
-  .section-h h2 .acc { color: var(--signal-500); }
-  .section-h .rt { justify-self: end; text-align: right; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); }
 
   /* CARDS */
   .card {
@@ -38,6 +33,7 @@
     text-decoration: none;
     color: inherit;
     min-height: 520px;
+    margin-top: 56px;
   }
   .card .body { padding: 32px 36px; display: flex; flex-direction: column; border-right: 1px solid var(--ink-900); }
   .card.reverse .body { order: 2; border-right: none; border-left: 1px solid var(--ink-900); }
@@ -60,7 +56,7 @@
       linear-gradient(90deg, var(--color-line-ghost) 1px, transparent 1px);
     background-size: 32px 32px;
   }
-  .card .vmeta { position: absolute; top: 14px; left: 14px; right: 14px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-caption); }
+  .card .vmeta { position: absolute; top: 14px; left: 30px; right: 30px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-caption); }
   .card .vmeta .k { color: var(--ink-900); }
   .card .vmeta .v { color: var(--signal-500); }
   .card .visual svg { position: absolute; inset: 44px 32px 44px 32px; width: calc(100% - 64px); height: calc(100% - 88px); }
@@ -78,10 +74,7 @@
 
   /* RESPONSIVE */
   @media (max-width: 960px) {
-    .section-h { grid-template-columns: 1fr; }
-    .section-h h2 { font-size: 40px; }
-    .section-h .rt { justify-self: start; text-align: left; }
-    .card { grid-template-columns: 1fr; min-height: auto; }
+    .card { grid-template-columns: 1fr; min-height: auto; margin-top: 32px; }
     .card .body { border-right: none; border-bottom: 1px solid var(--ink-900); padding: 28px; }
     .card.reverse .body { order: 0; border-left: none; border-top: 1px solid var(--ink-900); border-bottom: none; }
     .card.reverse .visual { order: 1; }
@@ -117,7 +110,6 @@
       <a href="index.html" class="logo-link">
         <img class="logo" src="assets/recodelabs-lockup.svg" alt="Recode Labs">
       </a>
-      <div class="meta">APPLIED AI LAB<br>EST · 2025</div>
     </div>
     <div class="navlinks">
       <a href="index.html">Work</a>
@@ -128,16 +120,9 @@
   </nav>
 
   <!-- ============== ELLY ============== -->
-  <section class="section-h" id="elly">
-    <div class="lbl">FIG. 01 · ELLY · AMBIENT INSIGHT</div>
-    <h2>Elly</h2>
-    <div class="rt">PROJECT · 01 · LIVE</div>
-  </section>
-
-  <div class="card">
+  <div class="card" id="elly">
     <div class="body">
-      <div class="idrow"><span class="n">PROJECT · 01 / ELLY</span><span>AMBIENT · CLINICS &amp; CLASSROOMS</span></div>
-      <h2>Elly <span class="acc">listens</span>,<br>so programs<br>can learn.</h2>
+      <h2>Elly listens,<br>so programs<br>can learn</h2>
       <div class="tag">AMBIENT · TRANSCRIPTION · INSIGHT</div>
       <p class="lede">Elly is an ambient listener for clinics and classrooms. It records the room, transcribes the audio, then uses AI to extract the answers programs actually want — did the clinic open on time, were protocols followed, how many visits were seen, was the curriculum covered, how often did students ask questions. <strong>Insight for supervisors, coaching for staff, no added burden.</strong> Cheap to run, easy to deploy.</p>
       <div class="stats">
@@ -148,22 +133,16 @@
     </div>
     <div class="visual">
       <span class="vticks"></span>
-      <div class="vmeta"><span class="k">FIG. 01 · ELLY / <span class="v">LISTEN · TRANSCRIBE · EXTRACT</span></span><span>AMBIENT · 2026</span></div>
+      <div class="vmeta"><span class="k"><span class="v">LISTEN · TRANSCRIBE · EXTRACT</span></span><span>AMBIENT · 2026</span></div>
       <img class="shot" src="assets/projects/elly.png" alt="Elly pipeline: ambient device listens, audio is transcribed, text is organized, AI extracts structured insights, and a dashboard shows actionable metrics">
     </div>
   </div>
 
   <!-- ============== TRUECOVER ============== -->
-  <section class="section-h" id="truecover">
-    <div class="lbl">FIG. 02 · TRUECOVER · IMMUNIZATION COVERAGE</div>
-    <h2>TrueCover</h2>
-    <div class="rt">PROJECT · 02 · PILOT</div>
-  </section>
-
-  <div class="card reverse">
+  <div class="card reverse" id="truecover">
     <div class="visual">
       <span class="vticks"></span>
-      <div class="vmeta"><span class="k">FIG. 02 · TRUECOVER / <span class="v">SAMPLE → ESTIMATE → RESAMPLE</span></span><span>BANGLADESH · 2026</span></div>
+      <div class="vmeta"><span class="k"><span class="v">SAMPLE → ESTIMATE → RESAMPLE</span></span><span>BANGLADESH · 2026</span></div>
       <svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg" data-anim="truecover" data-ramp="#F3E8E0,#EDD3C5,#E2B6A0,#D3957A,#B9715A">
       <g data-cells>
       <rect x="59" y="9" width="11" height="11" fill="#D3957A" stroke="#FAF8F3" stroke-width="1.10" data-c1="4" data-c2="3" data-w="0.36"/>
@@ -624,8 +603,7 @@
       </svg>
     </div>
     <div class="body">
-      <div class="idrow"><span class="n">PROJECT · 02 / TRUECOVER</span><span>GEOSPATIAL · IMMUNIZATION</span></div>
-      <h2>TrueCover finds the kids programs <span class="acc">miss</span>.</h2>
+      <h2>TrueCover finds the kids programs miss</h2>
       <div class="tag">SATELLITE · ADAPTIVE SAMPLING · FHIR</div>
       <p class="lede">A geospatial coverage estimator built with <strong>UNICEF and Bangladesh's MIS-DGHS</strong>. Combines high-resolution satellite imagery, an adaptive sampling algorithm, and offline mobile data collection to estimate immunization coverage at the household level — even in hard-to-reach areas where traditional surveys fall short. Outputs a <strong>predictive coverage map</strong> for every structure, with uncertainty scores so health teams know where to look next.</p>
       <div class="stats">
@@ -637,16 +615,9 @@
   </div>
 
   <!-- ============== CINDER ============== -->
-  <section class="section-h" id="cinder">
-    <div class="lbl">FIG. 03 · CINDER · FHIR BROWSER</div>
-    <h2>Cinder</h2>
-    <div class="rt">PROJECT · 03 · OPEN SOURCE</div>
-  </section>
-
-  <div class="card">
+  <div class="card" id="cinder">
     <div class="body">
-      <div class="idrow"><span class="n">PROJECT · 03 / CINDER</span><span>FHIR · OPEN SOURCE</span></div>
-      <h2>The missing FHIR <span class="acc">browser</span>.</h2>
+      <h2>Cinder, the missing FHIR browser</h2>
       <div class="tag">BROWSE · EDIT · AUTHOR · DEDUPE</div>
       <p class="lede">Browse health data in an accessible way. View, edit, and add resources; create, author, and fill in questionnaires; dedupe records; and run the admin tasks the spec doesn't make easy. Connects to <strong>Google Healthcare API</strong> and any FHIR server. <strong>The FHIR browser you didn't realize you needed</strong> — open source.</p>
       <div class="stats">
@@ -661,7 +632,7 @@
     </div>
     <div class="visual">
       <span class="vticks"></span>
-      <div class="vmeta"><span class="k">FIG. 03 · CINDER / <span class="v">PATIENT → ENCOUNTER → OBSERVATION</span></span><span>OPEN SOURCE</span></div>
+      <div class="vmeta"><span class="k"><span class="v">PATIENT → ENCOUNTER → OBSERVATION</span></span><span>OPEN SOURCE</span></div>
       <svg viewBox="-6 -4 532 194" xmlns="http://www.w3.org/2000/svg" data-anim="browse">
       
       <g data-col data-at="0"><rect x="4" y="8" width="156" height="144" fill="#FAF8F3" stroke="#0E0E0C" stroke-width="1"/><rect x="4" y="8" width="156" height="22" fill="#F4F1E9" stroke="#0E0E0C" stroke-width="1"/><text x="12" y="23" font-family="Manrope, sans-serif" font-size="10" fill="#0E0E0C" font-weight="600">Patient</text><text x="152" y="23" font-family="JetBrains Mono, monospace" font-size="7" fill="#8F8F86" text-anchor="end">4a7</text><text x="12" y="42" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#8F8F86" letter-spacing="0.8">NAME</text><text x="58" y="42" font-family="Manrope, sans-serif" font-size="8.5" fill="#0E0E0C">Amina K.</text><text x="12" y="55" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#8F8F86" letter-spacing="0.8">BORN</text><text x="58" y="55" font-family="Manrope, sans-serif" font-size="8.5" fill="#0E0E0C">2019-03-14</text><text x="12" y="68" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#8F8F86" letter-spacing="0.8">SEX</text><text x="58" y="68" font-family="Manrope, sans-serif" font-size="8.5" fill="#0E0E0C">female</text><line x1="12" y1="74" x2="152" y2="74" stroke="rgba(14,14,12,0.18)"/><g data-fade data-at="0.35"><rect x="5" y="89" width="154" height="14" fill="#FFF1EA"/><rect x="5" y="89" width="2" height="14" fill="#F16427"/></g><text x="12" y="84" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#8F8F86" letter-spacing="0.8">REFERENCES</text><text x="14" y="99" font-family="Manrope, sans-serif" font-size="8.5" fill="#0E0E0C">Encounter</text><text x="150" y="99" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#45453F" text-anchor="end">3</text><text x="14" y="113" font-family="Manrope, sans-serif" font-size="8.5" fill="#0E0E0C">Condition</text><text x="150" y="113" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#45453F" text-anchor="end">1</text><text x="14" y="127" font-family="Manrope, sans-serif" font-size="8.5" fill="#0E0E0C">Observation</text><text x="150" y="127" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#45453F" text-anchor="end">12</text><text x="14" y="141" font-family="Manrope, sans-serif" font-size="8.5" fill="#0E0E0C">Questionnaire</text><text x="150" y="141" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#45453F" text-anchor="end">2</text></g>
@@ -675,21 +646,14 @@
   </div>
 
   <!-- ============== PIXEL ============== -->
-  <section class="section-h" id="pixel">
-    <div class="lbl">FIG. 04 · PIXEL · POPULATION EXPLORER</div>
-    <h2>Pixel</h2>
-    <div class="rt">PROJECT · 04 · LIVE · geopixel.io</div>
-  </section>
-
-  <div class="card reverse" data-href="https://www.geopixel.io" role="link" tabindex="0" style="cursor:pointer;">
+  <div class="card reverse" id="pixel" data-href="https://www.geopixel.io" role="link" tabindex="0" style="cursor:pointer;">
     <div class="visual">
       <span class="vticks"></span>
-      <div class="vmeta"><span class="k">FIG. 04 · PIXEL / <span class="v">POPULATION + TRAVEL TIME</span></span><span>geopixel.io · 2026</span></div>
+      <div class="vmeta"><span class="k"><span class="v">POPULATION + TRAVEL TIME</span></span><span>geopixel.io · 2026</span></div>
       <img class="shot" src="assets/projects/pixel.png" alt="Pixel UI showing a WorldPop population layer with travel-time isochrones around Meru, Kenya">
     </div>
     <div class="body">
-      <div class="idrow"><span class="n">PROJECT · 04 / PIXEL</span><span>POPULATION · GEOSPATIAL</span></div>
-      <h2>Pixel shows where <span class="acc">people live</span>.</h2>
+      <h2>Pixel shows where people live</h2>
       <div class="tag">POPULATION · WORLDPOP · TRAVEL TIME</div>
       <p class="lede">Pixel is a <strong>population and geospatial data explorer</strong> built to answer the question every planner starts with: <strong>where do people actually live?</strong> The initial focus is making the <strong>WorldPop 2</strong> project — a 100m² resolution population map covering 242 countries from 2025–2030 — usable in a browser. Extract populations from drawn or uploaded shapes, or by travel time. Built to be expanded with other datasets over time.</p>
       <div class="stats">
@@ -705,7 +669,7 @@
 
   <!-- CTA -->
   <section class="cta">
-    <h2>Want us to build<br>the <span class="acc">next one</span>?</h2>
+    <h2>Want us to build<br>the next one?</h2>
     <div class="buttons">
       <a href="mailto:hello@recodelabs.org" class="btn">Start a conversation <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
       <a href="about.html" class="btn ghost">Meet the team</a>
@@ -713,8 +677,8 @@
   </section>
 
   <div class="foot-bot">
-    <span>© 2026 · RECODE LABS</span>
-    <span>BURLINGTON · VT</span>
+    <span>© 2026 RECODE LABS</span>
+    <span>BURLINGTON, VT</span>
   </div>
 
 </div>
