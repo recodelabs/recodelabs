@@ -261,6 +261,92 @@
     return player(tracks);
   }
 
+  /* ICR: campaign rounds sweep across a district. Where a ward has not been
+     registered yet, the round registers its households (a pre-census) and its
+     population estimate appears. Where it has, the round starts from that
+     register and updates it. */
+  function livingmap(svg) {
+    const ORANGE = '#F16427', INK = '#0E0E0C', INK2 = '#45453F', OFF = '#D6CFBD';
+    const KNOWN = '#EEE8DA', NEW = '#FFE7DA';
+    const rows = [...svg.querySelectorAll('[data-round]')].map(g => ({
+      r: +g.dataset.round, marker: g.querySelector('[data-marker]'),
+      texts: [...g.querySelectorAll('text')], note: g.querySelector('[data-note]'),
+    }));
+    const ROUNDS = rows.length, T0 = 0.4, RD = 2.6, SWEEP = 1.6, TOTAL = T0 + ROUNDS * RD + 0.2;
+    const map = svg.querySelector('[data-map]');
+    const X0 = +map.dataset.x0, X1 = +map.dataset.x1;
+    const fmt = n => Math.round(n).toLocaleString('en-US');
+    const estimate = hh => Math.round(hh * 5.2 / 10) * 10;
+    const roundStart = r => T0 + (r - 1) * RD;
+    const sweepAt = (r, x) => roundStart(r) + SWEEP * (x - X0) / (X1 - X0);
+
+    const households = [...svg.querySelectorAll('[data-households] rect')].map(el => ({
+      el, r: +el.dataset.r, x: +el.getAttribute('x'),
+    }));
+    const labels = [...svg.querySelectorAll('[data-labels] > g')];
+    const wards = [...svg.querySelectorAll('[data-wards] > g')].map((g, i) => ({
+      r: +g.dataset.r, x: +g.dataset.cx,
+      fill: g.querySelector('[data-fill]'), edge: g.querySelector('[data-edge]'),
+      hh: labels[i].dataset.hh.split(',').map(Number),
+      num: labels[i].querySelector('[data-num]'), pop: labels[i].querySelector('[data-pop]'),
+      known: [...labels[i].querySelectorAll('[data-known]')], unknown: labels[i].querySelector('[data-unknown]'),
+    }));
+    const total = svg.querySelector('[data-total]'), totalPop = svg.querySelector('[data-total-pop]');
+    const sweep = svg.querySelector('[data-sweep]');
+
+    function wardState(w, t, done) {
+      if (done) return { p: 1, hh: w.hh[ROUNDS - 1], counting: false };
+      const first = sweepAt(w.r, w.x);
+      if (t < first) return { p: 0, hh: 0, counting: false };
+      let hh = w.hh[w.r - 1] * ease.out(clamp((t - first) / 0.9));
+      for (let k = w.r + 1; k <= ROUNDS; k++) {
+        const at = sweepAt(k, w.x);
+        if (t >= at) hh = w.hh[k - 2] + (w.hh[k - 1] - w.hh[k - 2]) * ease.out(clamp((t - at) / 0.6));
+      }
+      return { p: ease.out(clamp((t - first) / 0.4)), hh, counting: t < roundStart(w.r) + RD };
+    }
+
+    function render(t) {
+      const done = t >= TOTAL;
+      const cur = done ? ROUNDS : Math.min(ROUNDS, Math.max(1, Math.floor((t - T0) / RD) + 1));
+      const isNew = r => (done ? r === ROUNDS : t < roundStart(r) + RD);
+      households.forEach(h => {
+        h.el.style.opacity = done ? 1 : ease.out(clamp((t - sweepAt(h.r, h.x)) / 0.25));
+        h.el.setAttribute('fill', isNew(h.r) ? ORANGE : INK);
+      });
+      let sum = 0, sumPop = 0;
+      wards.forEach(w => {
+        const s = wardState(w, t, done);
+        w.fill.style.opacity = s.p;
+        w.fill.setAttribute('fill', s.counting ? NEW : KNOWN);
+        w.edge.setAttribute('stroke', s.counting && s.p > 0 ? ORANGE : INK2);
+        w.edge.setAttribute('opacity', s.counting && s.p > 0 ? 1 : 0.6);
+        w.unknown.setAttribute('opacity', s.p > 0 ? 0 : 1);
+        w.known.forEach(el => { el.style.opacity = s.p; });
+        w.num.textContent = fmt(s.hh);
+        w.pop.textContent = fmt(estimate(s.hh));
+        if (s.p > 0) { sum += s.hh; sumPop += estimate(s.hh); }
+      });
+      total.textContent = fmt(sum);
+      totalPop.textContent = fmt(sumPop);
+      rows.forEach(row => {
+        const reached = done || t >= roundStart(row.r);
+        const active = !done && row.r === cur && reached;
+        row.marker.setAttribute('fill', active || (done && row.r === ROUNDS) ? ORANGE : reached ? INK : OFF);
+        row.texts.forEach((el, i) => {
+          if (el === row.note) { el.style.opacity = reached ? 1 : 0; return; }
+          el.setAttribute('fill', reached ? (i === 1 ? INK : INK2) : OFF);
+        });
+      });
+      const local = t - roundStart(cur);
+      const sweeping = !done && local >= 0 && local <= SWEEP;
+      sweep.setAttribute('opacity', sweeping ? 1 : 0);
+      if (sweeping) sweep.setAttribute('transform', `translate(${X0 + (X1 - X0) * local / SWEEP} 0)`);
+    }
+
+    return player([{ at: 0, dur: TOTAL, ease: ease.linear, set(p) { render(p >= 1 ? TOTAL : p * TOTAL); } }]);
+  }
+
   /* Pixel: the population raster loads outward from the query point, then
      travel-time rings expand while the reachable population is counted. */
   function reach(svg) {
@@ -293,7 +379,7 @@
     return player(tracks);
   }
 
-  const builders = { elly, truecover, sequence, reach };
+  const builders = { elly, truecover, sequence, livingmap, reach };
 
   const HOLD = 4000; // ms the finished diagram stays up before replaying
 
