@@ -58,15 +58,6 @@
   .proj.mid { grid-column: span 6; }
   .proj .visual { margin-top: 12px; }
 
-  /* Method strip */
-  .method { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--ink-900); border-bottom: 1px solid var(--ink-900); }
-  .method .cell { padding: 28px 24px; border-right: 1px solid var(--color-line-hairline); }
-  .method .cell:last-child { border-right: none; }
-  .method .cell .n { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal-500); display: flex; align-items: center; gap: 8px; }
-  .method .cell .n .dot { width: 5px; height: 5px; background: var(--signal-500); }
-  .method .cell h4 { font-family: var(--font-display); font-weight: 500; font-size: 28px; line-height: 1.05; letter-spacing: -0.03em; margin: 14px 0 10px; }
-  .method .cell h4 .acc { color: var(--signal-500); }
-  .method .cell p { font-size: 14px; color: var(--color-text-secondary); line-height: 1.5; }
 
   /* Partners */
   .partners { padding: 0 0 64px; }
@@ -156,10 +147,6 @@
     .section-h .rt { justify-self: start; text-align: left; }
     .work-grid { grid-template-columns: repeat(6, 1fr); }
     .proj.big, .proj.sm, .proj.mid { grid-column: span 6; }
-    .method { grid-template-columns: repeat(2, 1fr); }
-    .method .cell { border-right: 1px solid var(--color-line-hairline); border-bottom: 1px solid var(--color-line-hairline); }
-    .method .cell:nth-child(2n) { border-right: none; }
-    .method .cell:nth-last-child(-n+2) { border-bottom: none; }
     .partners { padding: 0 0 48px; }
     .partners-grid { grid-template-columns: 1fr; }
     .partner { border-right: none; border-bottom: 1px solid var(--color-line-hairline); }
@@ -185,11 +172,6 @@
     .proj h3 { font-size: 24px; margin-top: 24px; }
     .proj p { font-size: 13px; }
     .proj .visual { margin-top: 8px; }
-    .method { grid-template-columns: 1fr; }
-    .method .cell { border-right: none; }
-    .method .cell:not(:last-child) { border-bottom: 1px solid var(--color-line-hairline); }
-    .method .cell:last-child { border-bottom: none; }
-    .method .cell h4 { font-size: 22px; }
     .partners { padding: 0 0 32px; }
     .cta-block { padding: 40px 0; }
     .cta-block h2 { font-size: 28px; }
@@ -227,7 +209,7 @@
       <span class="dot"></span>
       <span>APPLIED AI FOR GLOBAL DEVELOPMENT</span>
     </div>
-    <h1>We apply AI to make the <span class="acc">impossible</span>, possible</h1>
+    <h1>We apply AI to tackle <span class="acc">intractable</span> challenges</h1>
     <div class="sub">
       <p class="lede">Recode Labs is an applied AI lab. We build and test applied AI systems with <strong>ministries, researchers, and partners</strong> — across health, education, climate, and humanitarian response. Frontier technology, grounded in <strong>20+ years of field experience</strong>.</p>
       <div class="cta">
@@ -240,7 +222,7 @@
   <!-- Work -->
   <section class="section" style="border-bottom: none;">
     <div class="section-h">
-      <h2>Deployments, not demos</h2>
+      <h2>Projects</h2>
     </div>
 
     <div class="work-grid">
@@ -881,7 +863,7 @@
           <text x="338.0" y="186.0" font-family="Manrope, sans-serif" font-size="8.5" fill="#45453F">About <tspan data-total-pop>16,330</tspan> people</text>
           </svg>
         </div>
-        <h3>ICR, so each campaign builds on the last</h3>
+        <h3>The Integrated Campaign Registry lets each campaign build on the last</h3>
         <p>An open data standard for health campaigns, built on FHIR. Places, households and teams recorded in one round carry into the next. Recode Labs leads the build with UNICEF and the Gates Foundation.</p>
         <div class="foot">
           <div class="tags"><span class="t">FHIR</span><span class="t">OPEN STANDARD</span></div>
@@ -987,42 +969,11 @@
     </div>
   </section>
 
-  <!-- Method -->
-  <section class="section" style="padding-top: 0; border-bottom: none;">
-    <div class="section-h">
-      <h2>How we work</h2>
-    </div>
-    <div class="method">
-      <div class="cell">
-        <div class="n"><span class="dot"></span>01</div>
-        <h4>Start from the problem</h4>
-        <p>Work with partners who can make a difference. Identify and validate the key problems worth solving.
-            </p>
-      </div>
-      <div class="cell">
-        <div class="n"><span class="dot"></span>02</div>
-        <h4>Build in the open</h4>
-        <p>Leverage and contribute back to open source. Collaborate openly with partners and the community.</p>
-      </div>
-      <div class="cell">
-        <div class="n"><span class="dot"></span>03</div>
-        <h4>Fail fast</h4>
-        <p>Test with end users and partners early. Iterate quickly, adapt, and leverage AI to learn and self-improve.</p>
-      </div>
-      <div class="cell">
-        <div class="n"><span class="dot"></span>04</div>
-        <h4>Ship, or retire</h4>
-        <p>We replicate in a second context or we stop. We only focus on solutions with a pathway to scaled impact.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- Partners -->
   <section class="partners">
     <div class="section-h">
-      <h2>Who we work with</h2>
+      <h2>Partners</h2>
     </div>
-    <p class="intro">Some of the partners we work with.</p>
     <div class="partners-grid">
       <div class="partner live">
         <div class="row1"><span>UN AGENCY</span></div>
@@ -1132,7 +1083,7 @@
         <h5>Lab</h5>
         <ul>
           <li><a href="about.html">About</a></li>
-          <li><a href="about.html#bench">Team</a></li>
+          <li><a href="about.html#team">Team</a></li>
           <li><a href="about.html#capabilities">Capabilities</a></li>
         </ul>
       </div>
