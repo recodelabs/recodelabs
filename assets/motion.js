@@ -146,42 +146,116 @@
     }]);
   }
 
-  /* Cinder: a column browser. A reference is selected in each resource and
-     the next resource opens beside it, ending on a low SpO₂ reading.
-     Elements carry data-at (seconds) and one of:
-       data-col   slide in from the left     data-fade  fade in
-       data-draw  draw the path or line      data-pop   fade in, quickly
-       data-move  slide down from data-from (y offset) into place */
-  function browse(svg) {
+  /* Step-by-step diagrams (the Elly pipeline, the ICR). Elements carry
+     data-at (seconds), an optional data-dur, and one effect:
+       data-col     slide in from the left    data-fade   fade in
+       data-pop     fade in quickly           data-draw   draw the path
+       data-extend  grow a line from x1,y1    data-move   slide down from data-from
+       data-grow    grow a bar ("bottom", "center" or "left")
+       data-count   count up to the number    data-clock  "from,to" in minutes
+       data-pulse   ring that ripples until data-until
+       data-stage   step label, highlighted from data-at to data-until */
+  function sequence(svg) {
     const tracks = [];
     const at = el => +el.dataset.at;
-    svg.querySelectorAll('[data-col]').forEach(el => tracks.push({
-      at: at(el), dur: 0.45,
+    const dur = (el, d) => +(el.dataset.dur || d);
+    const each = (sel, fn) => svg.querySelectorAll(sel).forEach(fn);
+
+    each('[data-col]', el => tracks.push({
+      at: at(el), dur: dur(el, 0.45),
       set(p) {
         el.style.opacity = p;
         el.setAttribute('transform', `translate(${-10 * (1 - p)} 0)`);
       },
     }));
-    svg.querySelectorAll('[data-fade], [data-pop]').forEach(el => tracks.push({
-      at: at(el), dur: el.hasAttribute('data-pop') ? 0.25 : 0.3,
+    each('[data-fade], [data-pop]', el => tracks.push({
+      at: at(el), dur: dur(el, el.hasAttribute('data-pop') ? 0.25 : 0.3),
       set(p) { el.style.opacity = p; },
     }));
-    svg.querySelectorAll('[data-draw]').forEach(el => {
+    each('[data-draw]', el => {
       const len = el.getTotalLength();
       el.style.strokeDasharray = len;
       tracks.push({
-        at: at(el), dur: 0.5, ease: ease.inOut,
+        at: at(el), dur: dur(el, 0.5), ease: ease.inOut,
         set(p) { el.style.strokeDashoffset = len * (1 - p); },
       });
     });
-    svg.querySelectorAll('[data-move]').forEach(el => {
+    each('[data-extend]', el => {
+      const [x1, y1, x2, y2] = ['x1', 'y1', 'x2', 'y2'].map(a => +el.getAttribute(a));
+      tracks.push({
+        at: at(el), dur: dur(el, 0.3), ease: ease.inOut,
+        set(p) {
+          el.setAttribute('x2', x1 + (x2 - x1) * p);
+          el.setAttribute('y2', y1 + (y2 - y1) * p);
+        },
+      });
+    });
+    each('[data-move]', el => {
       const dy = +el.dataset.from;
       tracks.push({
         at: at(el) - 0.3, dur: 0.2,
         set(p) { el.style.opacity = p; },
       }, {
-        at: at(el), dur: 0.6, ease: ease.inOut,
+        at: at(el), dur: dur(el, 0.6), ease: ease.inOut,
         set(p) { el.setAttribute('transform', `translate(0 ${dy * (1 - p)})`); },
+      });
+    });
+    each('[data-grow]', el => {
+      const y = +el.getAttribute('y'), h = +el.getAttribute('height'), w = +el.getAttribute('width');
+      const from = el.dataset.grow;
+      tracks.push({
+        at: at(el), dur: dur(el, 0.3),
+        set(p) {
+          if (from === 'left') { el.setAttribute('width', w * p); return; }
+          el.setAttribute('height', h * p);
+          el.setAttribute('y', from === 'center' ? y + (h * (1 - p)) / 2 : y + h * (1 - p));
+        },
+      });
+    });
+    each('[data-count]', el => {
+      const to = +el.dataset.count;
+      tracks.push({
+        at: at(el), dur: dur(el, 0.8),
+        set(p) { el.textContent = Math.round(to * p).toLocaleString('en-US'); },
+      });
+    });
+    each('[data-clock]', el => {
+      const [from, to] = el.dataset.clock.split(',').map(Number);
+      const fmt = m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(Math.floor(m % 60)).padStart(2, '0')}`;
+      tracks.push({
+        at: at(el), dur: dur(el, 1), ease: ease.linear,
+        set(p) { el.textContent = fmt(from + (to - from) * p); },
+      });
+    });
+    each('[data-pulse]', el => {
+      const r = +el.getAttribute('r'), o = baseOpacity(el), phase = +(el.dataset.phase || 0);
+      const span = +el.dataset.until - at(el);
+      tracks.push({
+        at: at(el), dur: span, ease: ease.linear,
+        set(p) {
+          if (p <= 0 || p >= 1) { el.setAttribute('r', r); el.style.opacity = o; return; }
+          const k = (p * span / 0.9 + phase) % 1; // one ripple every 0.9 s
+          el.setAttribute('r', r * (0.6 + 0.6 * k));
+          el.style.opacity = 0.5 * (1 - k);
+        },
+      });
+    });
+
+    // step labels: grey until their stage runs, then the marker turns orange
+    const total = Math.max(...tracks.map(tr => tr.at + tr.dur));
+    each('[data-stage]', g => {
+      const from = at(g), until = +g.dataset.until;
+      const marker = g.querySelector('[data-marker]');
+      const label = g.querySelector('text');
+      tracks.push({
+        at: 0, dur: total, ease: ease.linear,
+        set(p) {
+          const t = p * total;
+          const on = p >= 1 || (t >= from && t < until);
+          const reached = p >= 1 || t >= from;
+          marker.setAttribute('fill', on ? '#F16427' : reached ? '#0E0E0C' : '#D6CFBD');
+          label.setAttribute('fill', reached ? '#0E0E0C' : '#8F8F86');
+        },
       });
     });
     return player(tracks);
@@ -219,7 +293,7 @@
     return player(tracks);
   }
 
-  const builders = { elly, truecover, browse, reach };
+  const builders = { elly, truecover, sequence, reach };
 
   const HOLD = 4000; // ms the finished diagram stays up before replaying
 
