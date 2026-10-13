@@ -30,7 +30,7 @@
   <symbol id="rl-compass" viewBox="0 0 24 24">
     <circle class="s" cx="12" cy="12" r="9"></circle>
     <path class="s" d="M12 3 V6 M12 18 V21 M3 12 H6 M18 12 H21"></path>
-    <path d="M12 6 L14 13 L12 18 L10 13 Z" fill="#E05939" stroke="#0E0E0C" stroke-width="1" stroke-linejoin="miter"></path>
+    <path d="M12 6 L14 13 L12 18 L10 13 Z" fill="#F16427" stroke="#0E0E0C" stroke-width="1" stroke-linejoin="miter"></path>
   </symbol>
 
   
