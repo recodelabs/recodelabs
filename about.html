@@ -61,7 +61,7 @@
   .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
   .seat { border: 1px solid var(--ink-900); padding: 28px 24px; background: var(--bone-50); display: flex; flex-direction: column; min-height: 300px; }
   .seat .n { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal-500); font-weight: 500; }
-  .seat .silhouette { margin: 16px 0 22px; display: flex; align-items: center; justify-content: center; height: 90px;
+  .seat .silhouette { margin: 16px 0 22px; display: flex; align-items: center; justify-content: center; height: 112px;
     background:
       linear-gradient(var(--color-line-ghost) 1px, transparent 1px) 0 0 / 100% 18px,
       linear-gradient(90deg, var(--color-line-ghost) 1px, transparent 1px) 0 0 / 18px 100%;
@@ -70,7 +70,7 @@
   }
   .seat h4 { font-family: var(--font-display); font-weight: 500; font-size: 26px; line-height: 1.05; letter-spacing: -0.025em; }
   .seat h4 .acc { color: var(--signal-500); }
-  .seat .desc { font-size: 14px; line-height: 1.5; color: var(--color-text-secondary); margin-top: 10px; }
+  .seat .desc { font-size: 14px; line-height: 1.5; color: var(--color-text-secondary); margin-top: 10px; margin-bottom: 24px; }
   .seat .tags { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-caption); margin-top: auto; padding-top: 18px; border-top: 1px solid var(--color-line-hairline); }
 
   /* CAPABILITIES */
@@ -161,7 +161,6 @@
       <a href="index.html" class="logo-link">
         <img class="logo" src="assets/recodelabs-lockup.svg" alt="Recode Labs">
       </a>
-      <div class="meta">APPLIED AI LAB<br>EST · 2025</div>
     </div>
     <div class="navlinks">
       <a href="index.html">Work</a>
@@ -173,8 +172,8 @@
 
   <!-- HEADER -->
   <section class="page-head">
-    <div class="eyebrow"><span class="dot"></span>SHEET 04 · TEAM &amp; CAPABILITIES · REV A<span style="color: var(--color-text-caption)">·  04 PRACTICES</span></div>
-    <h1>A small lab.<br>A deep <span class="acc">bench</span>.</h1>
+    <div class="eyebrow"><span class="dot"></span>TEAM &amp; CAPABILITIES</div>
+    <h1>A small lab<br>A deep <span class="acc">bench</span></h1>
     <div class="sub">
       <p class="lede">Recode Labs is a <strong>principal + practice</strong>. A single named partner sets the direction; the work is carried by a rotating bench of <strong>engineers, designers, and data scientists</strong> who have shipped systems in the places we build for.</p>
       <div style="display:flex; gap:12px; justify-self:end;">
@@ -182,42 +181,32 @@
         <a href="projects.html" class="btn ghost">See the projects</a>
       </div>
     </div>
-    <div class="plates">
-      <div>SHEET 04 / 06</div>
-      <div>REV. A · 2026-04-19</div>
-      <div>RL-TEAM-CAP</div>
-    </div>
   </section>
 
   <!-- TEAM -->
   <section class="section-h" id="team">
-    <div class="lbl">FIG. 04A · THE PRINCIPAL</div>
-    <h2>The <span class="acc">principal</span>.</h2>
-    <div class="rt">NAMED · ACCOUNTABLE · HANDS-ON</div>
+    <h2>The principal</h2>
   </section>
 
   <div class="principal">
     <div class="portrait">
-      <div class="pmeta"><span>PLATE · 01 · PORTRAIT</span><span>GRAYSCALE · ARCHIVAL</span></div>
       <div class="canvas">
         <div class="frame">
           <img src="assets/team/matt-berg.jpeg" alt="Matt Berg">
         </div>
       </div>
-      <div class="pbottom"><span>MATT BERG · 2026</span><span>RL-PRN-01</span></div>
     </div>
     <div class="bio">
       <div class="idrow">
-        <span class="n">PRINCIPAL · 01 / MATT BERG</span>
-        <span>FOUNDER · DIRECTOR</span>
+        <span class="n">FOUNDER AND DIRECTOR</span>
       </div>
-      <h3>Matt Berg.</h3>
-      <div class="role">APPLIED AI · GLOBAL HEALTH · INFRASTRUCTURE · BURLINGTON VT</div>
+      <h3>Matt Berg</h3>
+      <div class="role">APPLIED AI, GLOBAL HEALTH, INFRASTRUCTURE</div>
       <p class="lede">
         Matt leads <strong>Recode Labs</strong>. Two decades building software for global development — from open-source platforms to production health systems deployed across Africa and South East Asia. <strong>Time 100. Founder. CEO. </strong> Now focused on building systems that would have been unimaginable without AI.
       </p>
       <div class="quote">The most impactful AI work this decade will be done by small teams in the places where the problems actually live.</div>
-      <div class="refs">WORK · GEEKCORPS · COLUMBIA UNIVERSITY · UNICEF · ONA</div>
+      <div class="refs">PREVIOUSLY: GEEKCORPS, COLUMBIA UNIVERSITY, UNICEF, ONA</div>
       <div class="foot">
         <a href="https://www.linkedin.com/in/mattlberg/" target="_blank" rel="noopener" class="btn">LinkedIn <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
       </div>
@@ -226,9 +215,7 @@
 
   <!-- BENCH -->
   <section class="section-h" id="bench">
-    <div class="lbl">FIG. 04B · THE BENCH</div>
-    <h2>A rotating <span class="acc">bench</span>.</h2>
-    <div class="rt">ENGINEERS · DESIGNERS · DATA SCIENTISTS</div>
+    <h2>A rotating bench</h2>
   </section>
 
   <p class="intro-p">
@@ -237,7 +224,7 @@
 
   <div class="team-grid">
     <div class="seat">
-      <div class="n">DISCIPLINE · 01 · ENGINEERS</div>
+      <div class="n">ENGINEERS</div>
       <div class="silhouette">
         <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:80px;">
           <g class="bp-stroke">
@@ -254,13 +241,13 @@
           <text x="60" y="76" text-anchor="middle" class="bp-label">DISTRIBUTED SYSTEMS</text>
         </svg>
       </div>
-      <h4>Build the <span class="acc">thing</span>.</h4>
+      <h4>Build the thing</h4>
       <p class="desc">Full-stack and infra engineers who ship production systems in low-bandwidth, high-stakes environments. Comfortable with Kubernetes and SIM cards alike.</p>
       <div class="tags">TS · PY · GO · KUBERNETES · POSTGRES · FHIR</div>
     </div>
 
     <div class="seat">
-      <div class="n">DISCIPLINE · 02 · DESIGNERS</div>
+      <div class="n">DESIGNERS</div>
       <div class="silhouette">
         <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:80px;">
           <g class="bp-stroke">
@@ -276,13 +263,13 @@
           <text x="60" y="76" text-anchor="middle" class="bp-label">INTERFACE · RESEARCH</text>
         </svg>
       </div>
-      <h4>Give it a <span class="acc">shape</span>.</h4>
+      <h4>Give it a shape</h4>
       <p class="desc">Product and systems designers who run field research, prototype in code, and draw the picture a minister or a clinician can hold in their head.</p>
       <div class="tags">FIGMA · HTML · RESEARCH · MOTION · CONTENT</div>
     </div>
 
     <div class="seat">
-      <div class="n">DISCIPLINE · 03 · DATA SCIENTISTS</div>
+      <div class="n">DATA SCIENTISTS</div>
       <div class="silhouette">
         <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:80px;">
           <g class="bp-stroke">
@@ -301,7 +288,7 @@
           <text x="60" y="76" text-anchor="middle" class="bp-label">EVIDENCE · INFERENCE</text>
         </svg>
       </div>
-      <h4>Prove it <span class="acc">works</span>.</h4>
+      <h4>Prove it works</h4>
       <p class="desc">ML and applied-stats researchers who design evaluations that match how the system is actually used.</p>
       <div class="tags">TORCH · JAX · PYMC · STATS · EVAL · LLM</div>
     </div>
@@ -309,9 +296,7 @@
 
   <!-- CAPABILITIES -->
   <section class="section-h" id="capabilities" style="padding-top: 96px;">
-    <div class="lbl">FIG. 05 · CAPABILITIES</div>
-    <h2>What we <span class="acc">do</span>.</h2>
-    <div class="rt">FOUR PRACTICES · ONE LAB</div>
+    <h2>What we do</h2>
   </section>
 
   <p class="intro-p">
@@ -321,41 +306,37 @@
   <div class="caps-grid">
 
     <div class="cap">
-      <div class="row1"><span class="n">01</span><span>AMBIENT · VOICE</span></div>
       <div class="diagram">
         <img src="assets/capabilities/ambient.png" alt="Ambient voice diagram">
       </div>
-      <h3>Ambient &amp; voice <span class="acc">interfaces</span>.</h3>
+      <h3>Ambient &amp; voice interfaces</h3>
       <p>Speech, transcription, and low-attention UI for places where typing isn't possible — exam rooms, field visits, class rooms.</p>
       <div class="ex"><strong>STACK</strong> · STT · DIARIZATION · ON-DEVICE · SWAHILI / AM / YO</div>
     </div>
 
     <div class="cap">
-      <div class="row1"><span class="n">02</span><span>HEALTH · INFRASTRUCTURE</span></div>
       <div class="diagram">
         <img src="assets/capabilities/infrastructure.png" alt="Health infrastructure diagram">
       </div>
-      <h3>Health data <span class="acc">infrastructure</span>.</h3>
+      <h3>Health data infrastructure</h3>
       <p>FHIR, HL7, and the connective tissue between clinics, ministries, and insurers. We build the the pipesthat will power agentic health systems.</p>
       <div class="ex"><strong>EXAMPLE</strong> · CINDER &mdash; FHIR BROWSER · OPEN SOURCE</div>
     </div>
 
     <div class="cap">
-      <div class="row1"><span class="n">03</span><span>GEOSPATIAL · AI</span></div>
       <div class="diagram">
         <img src="assets/capabilities/geospatial.png" alt="Geospatial AI diagram">
       </div>
-      <h3>Geospatial <span class="acc">AI</span>.</h3>
+      <h3>Geospatial AI</h3>
       <p>From satellite imagery and census layers to a query a planner can run — "under-5s in Turkana by ward." Segmentation, population estimation, boundary tooling; exportable maps used in immunization campaigns.</p>
       <div class="ex"><strong>EXAMPLE</strong> · PIXEL &mdash; POPULATION EXPLORER</div>
     </div>
 
     <div class="cap">
-      <div class="row1"><span class="n">04</span><span>STRATEGY · ADVISORY</span></div>
       <div class="diagram">
         <img src="assets/capabilities/advisory.png" alt="Strategy and advisory diagram">
       </div>
-      <h3>Strategy &amp; <span class="acc">advisory</span>.</h3>
+      <h3>Strategy &amp; advisory</h3>
       <p>Short, high-signal engagements for funders, ministries, and executive teams. Where can you apply AI for real transformation. What "AI-native" should actually mean inside your organization.</p>
       <div class="ex"><strong>FORMAT</strong> · 90-DAY SPRINTS · BOARD BRIEFINGS · DIAGNOSTICS</div>
     </div>
@@ -364,7 +345,7 @@
 
   <!-- CTA -->
   <section class="cta">
-    <h2>Have a hard <span class="acc">problem</span>?</h2>
+    <h2>Have a hard problem?</h2>
     <div class="buttons">
       <a href="mailto:hello@recodelabs.org" class="btn">Start a conversation <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
       <a href="projects.html" class="btn ghost">See the projects</a>
@@ -372,8 +353,8 @@
   </section>
 
   <div class="foot-bot">
-    <span>© 2026 · RECODE LABS</span>
-    <span>BURLINGTON · VT</span>
+    <span>© 2026 RECODE LABS</span>
+    <span>BURLINGTON, VT</span>
   </div>
 
 </div>
