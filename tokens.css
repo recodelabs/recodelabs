@@ -10,10 +10,10 @@
   /* --- COLOR -------------------------------------------------------------- */
 
   /* Survey paper — cool sage. Names kept from the earlier palette so existing rules still resolve. */
-  --bone-50:  #E7ECE7;   /* page */
-  --bone-100: #EEF2EE;   /* raised sheet */
-  --bone-200: #DCE3DE;   /* hairline tint */
-  --bone-300: #C3CEC8;   /* muted line */
+  --bone-50:  #F6F8F5;   /* page */
+  --bone-100: #FCFDFB;   /* raised sheet */
+  --bone-200: #E6ECE8;   /* hairline tint */
+  --bone-300: #CDD7D1;   /* muted line */
 
   /* Green-black ink */
   --ink-900: #14211D;   /* text */

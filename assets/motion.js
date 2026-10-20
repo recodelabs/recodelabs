@@ -104,7 +104,7 @@
     const rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
     const lerp = (a, b, k) => a.map((v, i) => v + (b[i] - v) * k);
     const mix = (a, b, k) => `rgb(${lerp(a, b, k).map(Math.round).join(',')})`;
-    const EMPTY = rgb('#DCE3DE'), BONE = rgb('#E7ECE7'), INK = rgb('#14211D');
+    const EMPTY = rgb('#DCE3DE'), BONE = rgb('#F6F8F5'), INK = rgb('#14211D');
     const cells = [...svg.querySelectorAll('[data-cells] rect')].map(el => {
       const w = +el.dataset.w;
       return {
