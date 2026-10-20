@@ -1,39 +1,43 @@
 /* ==========================================================================
    RECODE LABS — DESIGN TOKENS
    Applied AI lab for global development.
-   Aesthetic: technical blueprint — grids, measurements, drafting marks.
+   Aesthetic: survey map — contour lines, coordinates, legend marks.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=JetBrains+Mono:wght@300;400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,500&family=Barlow:wght@400;500;600;700&family=Red+Hat+Mono:wght@400;500;600&display=swap');
 
 :root {
   /* --- COLOR -------------------------------------------------------------- */
 
-  /* Paper & ink — the two-color core */
-  --bone-50:  #FAF8F3;   /* page */
-  --bone-100: #F4F1E9;   /* surface */
-  --bone-200: #E9E4D6;   /* hairline tint */
-  --bone-300: #D6CFBD;   /* muted line */
+  /* Survey paper — cool sage. Names kept from the earlier palette so existing rules still resolve. */
+  --bone-50:  #E7ECE7;   /* page */
+  --bone-100: #EEF2EE;   /* raised sheet */
+  --bone-200: #DCE3DE;   /* hairline tint */
+  --bone-300: #C3CEC8;   /* muted line */
 
-  --ink-900: #0E0E0C;   /* text, ink-black */
-  --ink-800: #1C1C19;
-  --ink-700: #2A2A26;
-  --ink-600: #45453F;   /* secondary text */
-  --ink-500: #6B6B63;   /* tertiary text */
-  --ink-400: #8F8F86;   /* captions */
-  --ink-300: #B4B4AB;   /* disabled */
-  --ink-200: #D6D6CF;   /* dividers on dark */
+  /* Green-black ink */
+  --ink-900: #14211D;   /* text */
+  --ink-800: #1C2C27;
+  --ink-700: #2C3A35;
+  --ink-600: #43514C;   /* secondary text */
+  --ink-500: #56635E;   /* tertiary text */
+  --ink-400: #5F6D67;   /* captions */
+  --ink-300: #9AA8A1;   /* disabled, labels on dark */
+  --ink-200: #C9D3CE;   /* dividers on dark */
 
-  /* Signal orange — the single accent, used sparingly */
-  --signal-50:  #FFF1EA;
-  --signal-100: #FFDCC9;
-  --signal-300: #FFA57C;
-  --signal-500: #F16427;  /* brand accent, matches the logo */
-  --signal-600: #D44E16;
-  --signal-700: #A13A10;
+  /* Survey orange — the single accent, used for markers */
+  --signal-50:  #FCEDE5;
+  --signal-100: #F8D5C3;
+  --signal-300: #F09A70;
+  --signal-500: #E2571C;  /* brand accent */
+  --signal-600: #C94912;
+  --signal-700: #A63C0C;  /* accent text on light ground */
 
-  /* Functional (desaturated, blueprint-friendly) */
-  --ok:    #3F6B4A;
+  /* Contour green */
+  --contour:    #2E5A4C;
+
+  /* Functional */
+  --ok:    #2E6450;
   --warn:  #A87A1F;
   --error: #B3382A;
 
@@ -45,18 +49,18 @@
   --color-text-secondary:  var(--ink-600);
   --color-text-muted:      var(--ink-500);
   --color-text-caption:    var(--ink-400);
-  --color-line:            var(--ink-900);       /* primary drafting line */
-  --color-line-hairline:   rgba(14,14,12,0.18);  /* grid / construction */
-  --color-line-ghost:      rgba(14,14,12,0.08);  /* sub-grid */
+  --color-line:            var(--ink-900);       /* primary line */
+  --color-line-hairline:   rgba(20,33,29,0.2);   /* grid / construction */
+  --color-line-ghost:      rgba(20,33,29,0.08);  /* sub-grid */
   --color-accent:          var(--signal-500);
   --color-accent-ink:      var(--signal-700);
 
   /* --- TYPE --------------------------------------------------------------- */
 
-  --font-display: 'Source Serif 4', 'Times New Roman', Times, serif;
-  --font-serif:   'Source Serif 4', 'Times New Roman', Times, serif;
-  --font-sans:    'Manrope', ui-sans-serif, -apple-system, 'Helvetica Neue', Arial, sans-serif;
-  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-display: 'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif:   'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans:    'Barlow', ui-sans-serif, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    'Red Hat Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
   /* Type scale — editorial + technical. Line heights optimized for density. */
   --fs-caption:  11px;   /* drafting label, all-caps */
@@ -80,7 +84,7 @@
   --tr-wide:     0.14em;  /* all-caps labels */
   --tr-mid:      0.04em;
   --tr-tight:    -0.015em;
-  --tr-display:  -0.02em; /* Serif wants less aggressive tracking than Jakarta */
+  --tr-display:  -0.005em; /* condensed display needs almost no negative tracking */
 
   /* --- GRID & SPACING ---------------------------------------------------- */
 
@@ -109,8 +113,8 @@
 
   --r-none: 0;
   --r-xs: 1px;
-  --r-sm: 2px;          /* all 'rounded' surfaces cap at 2px — blueprint precision */
-  --r-pill: 999px;      /* only for tags/pills */
+  --r-sm: 2px;          /* surfaces stay square */
+  --r-pill: 999px;      /* buttons, tags, markers */
 
   /* --- SHADOWS (flat system; drop shadows are rare) ---------------------- */
 

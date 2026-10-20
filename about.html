@@ -7,14 +7,14 @@
 <meta name="description" content="Matt Berg leads Recode Labs and works with a small team of experts: engineers, designers, and data scientists.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="stylesheet" href="tokens.css">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="tokens.css?v=2026-10-20d">
+<link rel="stylesheet" href="site.css?v=2026-10-20d">
 <style>
   /* PAGE HEADER */
   .page-head { padding: 72px 0 48px; border-bottom: 1px solid var(--ink-900); position: relative; }
   .page-head .eyebrow { display: flex; gap: 14px; align-items: center; margin-bottom: 24px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
   .page-head .eyebrow .dot { width: 6px; height: 6px; background: var(--signal-500); }
-  .page-head h1 { font-family: var(--font-display); font-weight: 500; font-size: 72px; line-height: 1; letter-spacing: -0.035em; max-width: 1100px; }
+  .page-head h1 { font-family: var(--font-display); font-weight: 700; font-size: 72px; line-height: 1; letter-spacing: -0.005em; max-width: 1100px; text-transform: uppercase; }
   .page-head h1 .acc { color: var(--signal-500); }
   .page-head .sub { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; margin-top: 40px; align-items: end; }
   .page-head .lede { font-size: 19px; line-height: 1.45; max-width: 56ch; color: var(--color-text-secondary); letter-spacing: -0.005em; }
@@ -23,7 +23,7 @@
   /* SECTION HEADER */
   .section-h { display: grid; grid-template-columns: 1fr auto; gap: 12px 40px; align-items: end; padding: 72px 0 24px; }
   .section-h .lbl { grid-column: 1 / -1; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); padding-bottom: 12px; border-bottom: 1px solid var(--color-line-hairline); }
-  .section-h h2 { font-family: var(--font-display); font-weight: 500; font-size: 56px; line-height: 1; letter-spacing: -0.035em; }
+  .section-h h2 { font-family: var(--font-display); font-weight: 700; font-size: 56px; line-height: 1; letter-spacing: -0.005em; text-transform: uppercase; }
   .section-h h2 .acc { color: var(--signal-500); }
   .section-h .rt { justify-self: end; text-align: right; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); }
 
@@ -48,11 +48,11 @@
   .bio { padding: 32px 36px; display: flex; flex-direction: column; }
   .bio .idrow { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); padding-bottom: 16px; border-bottom: 1px solid var(--color-line-hairline); }
   .bio .idrow .n { color: var(--signal-500); font-weight: 500; }
-  .bio h3 { font-family: var(--font-display); font-weight: 500; font-size: 56px; line-height: 0.98; letter-spacing: -0.035em; margin-top: 28px; }
+  .bio h3 { font-family: var(--font-display); font-weight: 700; font-size: 56px; line-height: 0.98; letter-spacing: -0.005em; margin-top: 28px; }
   .bio .role { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-secondary); margin-top: 16px; }
   .bio .lede { font-size: 17px; line-height: 1.55; color: var(--color-text); margin-top: 20px; max-width: 52ch; }
   .bio .lede strong { color: var(--ink-900); font-weight: 500; }
-  .bio .quote { margin-top: 28px; padding: 24px 0 0; border-top: 1px solid var(--color-line-hairline); font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 22px; line-height: 1.35; letter-spacing: -0.01em; color: var(--ink-900); max-width: 44ch; }
+  .bio .quote { margin-top: 28px; padding: 24px 0 0; border-top: 1px solid var(--color-line-hairline); font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 22px; line-height: 1.35; letter-spacing: -0.005em; color: var(--ink-900); max-width: 44ch; }
   .bio .quote::before { content: '"'; color: var(--signal-500); font-size: 1.1em; margin-right: 4px; }
   .bio .refs { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-caption); margin-top: 20px; line-height: 1.6; }
   .bio .foot { margin-top: auto; padding-top: 24px; display: flex; gap: 10px; }
@@ -71,8 +71,10 @@
     margin: 0 -32px;
     overflow: hidden;
   }
-  .cap .diagram img { display: block; width: 100%; height: 100%; object-fit: contain; }
-  .cap h3 { font-family: var(--font-display); font-weight: 500; font-size: 32px; line-height: 1.02; letter-spacing: -0.03em; }
+  .cap .diagram img { display: block; width: auto; max-width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; /* drops the PNGs' cream backgrounds into the sage page */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent), linear-gradient(to bottom, transparent, #000 15%, #000 85%, transparent); -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent), linear-gradient(to bottom, transparent, #000 15%, #000 85%, transparent); mask-composite: intersect; }
+  .cap h3 { font-family: var(--font-display); font-weight: 700; font-size: 32px; line-height: 1.02; letter-spacing: -0.005em; }
   .cap h3 .acc { color: var(--signal-500); }
   .cap p { font-size: 15px; line-height: 1.55; color: var(--color-text-secondary); max-width: 48ch; }
   .cap .ex { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-caption); margin-top: auto; padding-top: 12px; border-top: 1px solid var(--color-line-hairline); }
@@ -80,7 +82,7 @@
 
   /* CTA */
   .cta { padding: 72px 0 80px; border-top: 1px solid var(--ink-900); display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; margin-top: 72px; }
-  .cta h2 { font-family: var(--font-display); font-weight: 500; font-size: 72px; line-height: 0.98; letter-spacing: -0.04em; max-width: 16ch; }
+  .cta h2 { font-family: var(--font-display); font-weight: 700; font-size: 72px; line-height: 0.98; letter-spacing: -0.005em; max-width: 16ch; text-transform: uppercase; }
   .cta h2 .acc { color: var(--signal-500); }
   .cta .buttons { display: flex; gap: 12px; }
 
@@ -152,7 +154,7 @@
   </nav>
 
   <!-- HEADER -->
-  <section class="page-head">
+  <section class="page-head contours">
     <div class="eyebrow"><span class="dot"></span>TEAM &amp; CAPABILITIES</div>
     <h1>Who we are</h1>
     <div class="sub">
