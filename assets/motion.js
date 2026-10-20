@@ -104,7 +104,7 @@
     const rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
     const lerp = (a, b, k) => a.map((v, i) => v + (b[i] - v) * k);
     const mix = (a, b, k) => `rgb(${lerp(a, b, k).map(Math.round).join(',')})`;
-    const EMPTY = rgb('#E9E4D6'), BONE = rgb('#FAF8F3'), INK = rgb('#0E0E0C');
+    const EMPTY = rgb('#DCE3DE'), BONE = rgb('#E7ECE7'), INK = rgb('#14211D');
     const cells = [...svg.querySelectorAll('[data-cells] rect')].map(el => {
       const w = +el.dataset.w;
       return {
@@ -139,7 +139,7 @@
         sites2.forEach((el, i) => { el.style.opacity = k(t, T[3] + i * 0.14, 0.2); });
         const active = p >= 1 ? -1 : T.reduce((n, s, i) => (t >= s ? i : n), -1);
         stages.forEach((s, i) => {
-          s.label.setAttribute('fill', p >= 1 || i === active ? '#0E0E0C' : '#8F8F86');
+          s.label.setAttribute('fill', p >= 1 || i === active ? '#14211D' : '#5F6D67');
           s.marker.setAttribute('opacity', i === active ? 1 : 0);
         });
       },
@@ -253,8 +253,8 @@
           const t = p * total;
           const on = p >= 1 || (t >= from && t < until);
           const reached = p >= 1 || t >= from;
-          marker.setAttribute('fill', on ? '#F16427' : reached ? '#0E0E0C' : '#D6CFBD');
-          label.setAttribute('fill', reached ? '#0E0E0C' : '#8F8F86');
+          marker.setAttribute('fill', on ? '#E2571C' : reached ? '#14211D' : '#C3CEC8');
+          label.setAttribute('fill', reached ? '#14211D' : '#5F6D67');
         },
       });
     });
@@ -266,8 +266,8 @@
      population estimate appears. Where it has, the round starts from that
      register and updates it. */
   function livingmap(svg) {
-    const ORANGE = '#F16427', INK = '#0E0E0C', INK2 = '#45453F', OFF = '#D6CFBD';
-    const KNOWN = '#EEE8DA', NEW = '#FFE7DA';
+    const ORANGE = '#E2571C', INK = '#14211D', INK2 = '#43514C', OFF = '#C3CEC8';
+    const KNOWN = '#DDE5E0', NEW = '#FCE3D6';
     const rows = [...svg.querySelectorAll('[data-round]')].map(g => ({
       r: +g.dataset.round, marker: g.querySelector('[data-marker]'),
       texts: [...g.querySelectorAll('text')], note: g.querySelector('[data-note]'),
