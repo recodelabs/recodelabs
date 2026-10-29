@@ -97,21 +97,21 @@
 
   /* TrueCover: the survey loop on a grid. Round 1 sites are placed, the
      coverage surface spreads out from them, the map switches to confidence
-     (darker = wider credible interval), round 2 sites land where it is
+     (deeper blue = wider credible interval), round 2 sites land where it is
      darkest, and coverage is re-estimated. Stage labels follow along. */
   function truecover(svg) {
     const RAMP = svg.dataset.ramp.split(',');
     const rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
     const lerp = (a, b, k) => a.map((v, i) => v + (b[i] - v) * k);
     const mix = (a, b, k) => `rgb(${lerp(a, b, k).map(Math.round).join(',')})`;
-    const EMPTY = rgb('#DCE3DE'), BONE = rgb('#F6F8F5'), INK = rgb('#14211D');
+    const EMPTY = rgb('#DCE3DE'), BONE = rgb('#F6F8F5'), NAVY = rgb('#1A4BA8');
     const cells = [...svg.querySelectorAll('[data-cells] rect')].map(el => {
       const w = +el.dataset.w;
       return {
         el, w,
         c1: rgb(RAMP[+el.dataset.c1]),
         c2: rgb(RAMP[+el.dataset.c2]),
-        conf: lerp(BONE, INK, 0.05 + 0.5 * w),
+        conf: lerp(BONE, NAVY, 0.1 + 0.8 * w),
       };
     });
     const sites1 = [...svg.querySelectorAll('[data-site="1"]')];
