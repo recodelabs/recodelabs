@@ -124,6 +124,10 @@
   .contact-form textarea::placeholder { color: var(--ink-300); opacity: 0.72; }
   .contact-form input:focus,
   .contact-form textarea:focus { outline: 2px solid var(--signal-500); outline-offset: 1px; border-color: var(--signal-500); }
+  .contact-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .contact-form .btn[disabled] { opacity: 0.6; cursor: progress; }
+  .contact-form .form-status { margin: 0; font-size: 14px; color: var(--bone-50); min-height: 1.4em; }
+  .contact-form .form-status.is-error { color: #F2B8A8; }
   .contact-form .btn { justify-self: start; background: var(--signal-500); border-color: var(--signal-500); color: #fff; padding: 14px 20px; font-size: 14px; }
 
   /* Footer */
@@ -199,7 +203,7 @@
       <a href="index.html" class="active">Work</a>
       <a href="projects.html">Projects</a>
       <a href="about.html">About</a>
-      <a class="btn" href="mailto:hello@recodelabs.org">Work with us <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
+      <a class="btn" href="#contact">Work with us <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></a>
     </div>
   </nav>
 
@@ -1033,13 +1037,14 @@
 </div>
 
 <!-- CTA -->
-<section class="cta-block">
+<section class="cta-block" id="contact">
   <div class="grid contours-light"></div>
   <div class="wrap">
     <div>
       <h2>Have a problem we could work on?</h2>
     </div>
-    <form class="contact-form" action="mailto:hello@recodelabs.org" method="post" enctype="text/plain">
+    <form class="contact-form" action="/api/contact" method="post">
+      <label class="hp" aria-hidden="true">Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
       <div class="row">
         <label>
           Name
@@ -1055,6 +1060,7 @@
         <textarea name="message" placeholder="Tell us what you are working on" required></textarea>
       </label>
       <button class="btn" type="submit">Send message <svg width="14" height="14"><use href="assets/icons.svg#rl-arrow"></use></svg></button>
+      <p class="form-status" role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
@@ -1102,6 +1108,34 @@
   </div>
 </div>
 
+<script>
+(function () {
+  var form = document.querySelector('.contact-form');
+  if (!form) return;
+  var status = form.querySelector('.form-status');
+  var button = form.querySelector('button[type="submit"]');
+  function show(msg, isError) {
+    status.textContent = msg;
+    status.classList.toggle('is-error', !!isError);
+  }
+  var param = new URLSearchParams(location.search).get('contact');
+  if (param === 'sent') show('Thanks. Your message was sent.');
+  if (param === 'error') show('The message could not be sent. Please email hello@recodelabs.org.', true);
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    button.disabled = true;
+    show('Sending…');
+    fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+      .then(function (data) {
+        if (data.ok) { form.reset(); show('Thanks. Your message was sent.'); }
+        else show(data.error || 'The message could not be sent. Please email hello@recodelabs.org.', true);
+      })
+      .catch(function () { show('The message could not be sent. Please email hello@recodelabs.org.', true); })
+      .finally(function () { button.disabled = false; });
+  });
+})();
+</script>
 <script src="assets/motion.js?v=2026-10-29b" defer></script>
 </body>
 </html>

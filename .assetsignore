@@ -5,3 +5,6 @@
 .assetsignore
 wrangler.jsonc
 CNAME
+worker
+.dev.vars
+.playwright-mcp
