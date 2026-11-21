@@ -3,11 +3,16 @@
   "name": "recodelabs",
   "compatibility_date": "2026-10-01",
   "main": "worker/index.js",
+  "workers_dev": true,
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
-    "run_worker_first": ["/api/*"]
+    "run_worker_first": true
   },
+  "routes": [
+    { "pattern": "www.recodelabs.org", "custom_domain": true },
+    { "pattern": "recodelabs.org", "custom_domain": true }
+  ],
   "vars": {
     "CONTACT_TO": "hello@recodelabs.org",
     "CONTACT_FROM": "Recode Labs website <website@recodelabs.org>"

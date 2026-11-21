@@ -9,6 +9,10 @@ const MAX = { name: 200, email: 320, message: 5000 };
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.hostname === "recodelabs.org") {
+      url.hostname = "www.recodelabs.org";
+      return Response.redirect(url.toString(), 301);
+    }
     if (url.pathname === "/api/contact") {
       if (request.method !== "POST") {
         return json({ ok: false, error: "Method not allowed" }, 405);
