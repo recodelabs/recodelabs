@@ -16,5 +16,11 @@
   "vars": {
     "CONTACT_TO": "hello@recodelabs.org",
     "CONTACT_FROM": "Recode Labs website <website@recodelabs.org>"
+  },
+  "previews": {
+    "vars": {
+      "CONTACT_TO": "hello@recodelabs.org",
+      "CONTACT_FROM": "Recode Labs website (preview) <website@recodelabs.org>"
+    }
   }
 }
